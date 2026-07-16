@@ -234,11 +234,12 @@ a:hover { color: var(--teal-600); }
   box-shadow: var(--shadow);
 }
 @media (min-width: 700px) {
-  .team-member { grid-template-columns: 220px 1fr; align-items: start; }
+  .team-member { grid-template-columns: 340px 1fr; align-items: start; }
 }
 .team-member img {
   width: 100%;
-  max-width: 220px;
+  height: auto;              /* beat the height="500" attribute so aspect-ratio applies (square, not stretched) */
+  max-width: 340px;
   border-radius: 10px;
   aspect-ratio: 1 / 1;
   object-fit: cover;
