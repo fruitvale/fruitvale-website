@@ -74,6 +74,30 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.fruitvaleoptometry.com/location.html"/>
   </url>
   <url>
+    <loc>https://www.fruitvaleoptometry.com/medi-cal-eye-exam-glasses.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.fruitvaleoptometry.com/medi-cal-eye-exam-glasses.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.fruitvaleoptometry.com/es/medi-cal-examen-lentes.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.fruitvaleoptometry.com/medi-cal-eye-exam-glasses.html"/>
+  </url>
+  <url>
+    <loc>https://www.fruitvaleoptometry.com/es/medi-cal-examen-lentes.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.fruitvaleoptometry.com/medi-cal-eye-exam-glasses.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.fruitvaleoptometry.com/es/medi-cal-examen-lentes.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.fruitvaleoptometry.com/medi-cal-eye-exam-glasses.html"/>
+  </url>
+  <url>
+    <loc>https://www.fruitvaleoptometry.com/weekend-eye-exam-oakland.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.fruitvaleoptometry.com/weekend-eye-exam-oakland.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.fruitvaleoptometry.com/es/examen-fin-de-semana-oakland.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.fruitvaleoptometry.com/weekend-eye-exam-oakland.html"/>
+  </url>
+  <url>
+    <loc>https://www.fruitvaleoptometry.com/es/examen-fin-de-semana-oakland.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.fruitvaleoptometry.com/weekend-eye-exam-oakland.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.fruitvaleoptometry.com/es/examen-fin-de-semana-oakland.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.fruitvaleoptometry.com/weekend-eye-exam-oakland.html"/>
+  </url>
+  <url>
     <loc>https://www.fruitvaleoptometry.com/outages.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.fruitvaleoptometry.com/outages.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.fruitvaleoptometry.com/es/outages.html"/>
