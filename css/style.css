@@ -616,8 +616,8 @@ section { padding: 3rem 0; }
   letter-spacing: .1em;
   line-height: 1;
 }
-.reviews-score .count { margin: .25rem 0 0; color: var(--ink-soft); font-weight: 700; font-size: 1.05rem; }
-.reviews-head .reviews-blurb { margin: 0; max-width: 26em; color: var(--ink-soft); font-size: 1.05rem; }
+.reviews-score .count { margin: .25rem 0 0; color: var(--ink-soft); font-weight: 700; font-size: 1.2rem; }
+.reviews-head .reviews-blurb { margin: 0; max-width: 30em; color: var(--ink-soft); font-size: 1.22rem; line-height: 1.5; }
 
 .review-grid {
   display: grid;
@@ -633,26 +633,26 @@ section { padding: 3rem 0; }
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 1.3rem 1.3rem 1.4rem;
+  padding: 1.6rem 1.6rem 1.7rem;
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  gap: .6rem;
+  gap: .75rem;
 }
-.review-card .stars { font-size: 1.05rem; }
+.review-card .stars { font-size: 1.3rem; }
 .review-card blockquote {
   margin: 0;
-  font-size: 1.02rem;
+  font-size: 1.2rem;
   color: var(--ink);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 .review-card .review-name {
   margin-top: auto;
   font-weight: 700;
   color: var(--teal-900);
-  font-size: .98rem;
+  font-size: 1.1rem;
 }
-.review-card .review-src { color: var(--ink-soft); font-weight: 600; font-size: .85rem; }
+.review-card .review-src { color: var(--ink-soft); font-weight: 600; font-size: .95rem; }
 
 .reviews-cta { margin-top: 1.5rem; }
 
