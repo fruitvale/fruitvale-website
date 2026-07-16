@@ -498,7 +498,7 @@ section { padding: 3rem 0; }
   grid-template-columns: 1fr;
 }
 @media (min-width: 640px) { .doctor-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 980px) { .doctor-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 980px) { .doctor-grid { grid-template-columns: repeat(3, 1fr); } }
 
 .doctor {
   background: var(--paper);
