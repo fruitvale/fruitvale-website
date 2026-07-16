@@ -624,7 +624,9 @@ section { padding: 3rem 0; }
   grid-template-columns: 1fr;
 }
 @media (min-width: 640px)  { .review-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1000px) { .review-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1080px) { .review-grid { grid-template-columns: repeat(4, 1fr); } }
+/* reviews band runs wide across the screen (its own colored strip, so it can exceed the 1100px body) */
+.reviews .container { max-width: 1600px; }
 
 .review-card {
   background: var(--paper);
