@@ -1,0 +1,11 @@
+# Cloudflare Pages redirects -- https://developers.cloudflare.com/pages/configuration/redirects/
+# One rule per line:  <from-path>  <to>  <status>
+
+# Legacy Eyefinity/Weebly upload paths for the two legal notices -> new local copies
+# (in case the old URLs are bookmarked or indexed by Google).
+/uploads/4/1/7/4/41746391/prop_65_warning.doc                 /assets/legal/prop_65_warning.doc                  301
+/uploads/4/1/7/4/41746391/hippa_notice_of_privacy_practices_2.doc  /assets/legal/hippa_notice_of_privacy_practices_2.doc  301
+
+# NOTE: apex -> www redirect (fruitvaleoptometry.com -> www.fruitvaleoptometry.com)
+# is NOT done here -- _redirects matches path only, not hostname. Set it as a
+# Cloudflare "Redirect Rule" in the dashboard instead (see DEPLOY.md, Step F).

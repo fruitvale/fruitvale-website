@@ -1,0 +1,10 @@
+# dev / tooling — kept out of the deployed site
+.claude/
+START WEBSITE PREVIEW.bat
+README.md
+DEPLOY.md
+SEO.md
+PRE-LAUNCH-CHECKLIST.md
+build-deploy.ps1
+.DS_Store
+Thumbs.db

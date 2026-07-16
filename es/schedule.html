@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="robots" content="noindex">
+<title>Haga su cita — Fruitvale Optometry</title>
+<meta name="description" content="Empiece su solicitud de cita con Fruitvale Optometry. Díganos su aseguranza y lo llevamos a agendar.">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+<header class="site-header">
+  <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">☰</button>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-name">Fruitvale Optometry</span>
+    </a>
+    <a class="lang-switch" href="../schedule.html" lang="en" hreflang="en">English</a>
+    <nav class="site-nav" id="site-nav" aria-label="Menú principal">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="our-practice.html">Nuestro Consultorio</a></li>
+        <li><a href="services.html">Servicios</a></li>
+        <li><a href="insurance.html">Aseguranzas</a></li>
+        <li><a href="eyewear.html">Armazones y Lentes</a></li>
+        <li><a href="location.html">Ubicación</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="gate-wrap">
+    <div class="container">
+      <div class="gate-card"
+           id="gate-root"
+           data-booking-url="http://www.4patientcare.ws/v5dn/ws/wsv3p.aspx?CoverKey=2569&amp;TaskKey=36059&amp;LocKey=4296&amp;V4Scenario=3&amp;Source=website&amp;ReferredBy=website"
+           data-form-action="https://docs.google.com/forms/d/e/1FAIpQLSewfzHOuvqm97JsawpKZ_KoDMK1lQ06nyIQxLszA5eB1z3YFQ/formResponse"
+           data-form-entry="entry.487543829"
+           data-msg-required="Este campo es obligatorio."
+           data-msg-badcin="Ingrese su CIN — 8 números y una letra (como 91234567A). También puede escribir el número completo de su tarjeta."
+           data-msg-badeyemed="Ingrese su número de miembro de EyeMed completo (al menos 9 dígitos)."
+           data-msg-badvspid="Ingrese los últimos 4 dígitos del seguro social, o su número de miembro de VSP."
+           data-msg-baddob="Ingrese una fecha de nacimiento válida."
+           data-msg-pickone="Por favor elija al menos una opción.">
+
+        <h1>Haga su cita</h1>
+        <p class="gate-intro">Primero, díganos sobre su aseguranza para preparar su visita. Solo toma un minuto y luego lo llevamos a agendar.</p>
+
+        <form id="gate-form" novalidate>
+
+          <span class="gate-step-label">¿Qué aseguranza tiene?</span>
+          <p class="gate-step-hint">Elija todas las que apliquen.</p>
+
+          <div class="carrier-options">
+            <label class="carrier-option"><input type="checkbox" name="carrier" value="medical"> Medi-Cal</label>
+            <label class="carrier-option"><input type="checkbox" name="carrier" value="vsp"> VSP</label>
+            <label class="carrier-option"><input type="checkbox" name="carrier" value="eyemed"> EyeMed</label>
+            <label class="carrier-option"><input type="checkbox" name="carrier" value="none"> Sin aseguranza</label>
+          </div>
+
+          <!-- Identidad compartida (para localizar su cita) -->
+          <div class="identity-fields" data-identity>
+            <h2>Su información</h2>
+            <div class="name-row">
+              <div class="field">
+                <label for="id-first">Nombre <span class="field-hint">(como aparece en su aseguranza)</span></label>
+                <input type="text" id="id-first" data-validate="required" autocomplete="given-name">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="id-last">Apellido <span class="field-hint">(como aparece en su aseguranza)</span></label>
+                <input type="text" id="id-last" data-validate="required" autocomplete="family-name">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="id-dob">Fecha de nacimiento</label>
+              <input type="date" id="id-dob" data-validate="dob" autocomplete="bday">
+              <span class="error-msg"></span>
+            </div>
+          </div>
+
+          <!-- Medi-Cal -->
+          <div class="carrier-fields" data-carrier="medical">
+            <h2>Medi-Cal</h2>
+            <div class="field">
+              <label for="medical-cin">Número CIN <span class="field-hint">(8 números y una letra — o el número completo de su tarjeta)</span></label>
+              <input type="text" id="medical-cin" data-validate="cin" inputmode="text" autocomplete="off" placeholder="ej. 91234567A">
+              <span class="error-msg"></span>
+            </div>
+            <div class="cin-help">
+              <p class="cin-help-label">Encuentre su CIN en su tarjeta:</p>
+              <div class="cin-cards">
+                <div class="cin-card"><figure>
+                  <img src="../assets/cin-bic.png" alt="Tarjeta de Beneficios de Medi-Cal (BIC) con el CIN marcado en rojo — son los primeros 9 caracteres del número de ID">
+                  <figcaption>Tarjeta Medi-Cal (BIC) — los primeros 9 caracteres del "ID No."</figcaption>
+                </figure></div>
+                <div class="cin-card"><figure>
+                  <img src="../assets/cin-alliance.png" alt="Tarjeta de miembro de Alameda Alliance for Health con la línea del CIN marcada en rojo">
+                  <figcaption>Tarjeta de Alameda Alliance — la línea que dice "CIN"</figcaption>
+                </figure></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VSP -->
+          <div class="carrier-fields" data-carrier="vsp">
+            <h2>VSP</h2>
+            <div class="field">
+              <label for="vsp-id">Últimos 4 del seguro social o número de miembro de VSP</label>
+              <input type="text" id="vsp-id" data-validate="vspid" inputmode="text" autocomplete="off" placeholder="ej. 5678">
+              <span class="error-msg"></span>
+            </div>
+          </div>
+
+          <!-- EyeMed -->
+          <div class="carrier-fields" data-carrier="eyemed">
+            <h2>EyeMed</h2>
+            <div class="field">
+              <label for="eyemed-id">Número de miembro de EyeMed <span class="field-hint">(en su tarjeta de EyeMed)</span></label>
+              <input type="text" id="eyemed-id" data-validate="eyemed" inputmode="numeric" autocomplete="off" placeholder="ej. 812345678">
+              <span class="error-msg"></span>
+            </div>
+          </div>
+
+          <div class="gate-actions">
+            <button type="submit" class="btn btn-primary gate-submit" disabled>Continuar a agendar →</button>
+            <p class="gate-note">Su información se usa solo para preparar su visita. La elegibilidad se confirma al llegar a la oficina.</p>
+            <p class="gate-call-fallback">¿Prefiere hablar con alguien? <a href="tel:+15105336567"><strong>Llame al (510) 533-6567</strong></a></p>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- popup de confirmación -->
+<div class="gate-modal-backdrop" id="gate-modal" role="dialog" aria-modal="true" aria-labelledby="gate-modal-title">
+  <div class="gate-modal">
+    <div class="modal-icon" aria-hidden="true">✓</div>
+    <h2 id="gate-modal-title">¡Gracias!</h2>
+    <p>Su información será revisada. Es posible que le llamemos si necesitamos algo más para verificar su cobertura. Haga clic en continuar para terminar de agendar su cita.</p>
+    <button type="button" class="btn btn-primary" id="gate-continue">Continuar a agendar →</button>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Fruitvale Optometry</h3>
+        <p>3301 East 12th Street #109<br>Oakland, CA 94601</p>
+        <p><a href="tel:+15105336567">(510) 533-6567</a><br>
+        <a href="mailto:fruitvaleoptometry@gmail.com">fruitvaleoptometry@gmail.com</a></p>
+      </div>
+      <div>
+        <h3>Horario</h3>
+        <ul>
+          <li>Lunes–Viernes: 9:00 am – 6:00 pm</li>
+          <li>Sábado–Domingo: 10:00 am – 3:00 pm</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Más</h3>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="location.html">Ubicación</a></li>
+          <li><a href="../schedule.html" lang="en" hreflang="en">In English</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© Fruitvale Optometry · 3301 East 12th Street #109, Oakland, CA 94601 · (510) 533-6567</p>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-actions">
+  <a class="btn btn-primary" href="#gate-root">📅 Formulario</a>
+  <a class="btn btn-secondary" href="tel:+15105336567">📞 Llámenos</a>
+</div>
+
+<script>
+(function () {
+  var toggle = document.getElementById('nav-toggle');
+  var nav = document.getElementById('site-nav');
+  toggle.addEventListener('click', function () {
+    var open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+})();
+</script>
+<script src="../js/gate.js?v=3"></script>
+
+</body>
+</html>
