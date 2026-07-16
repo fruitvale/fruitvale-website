@@ -101,19 +101,9 @@ a:hover { color: var(--teal-600); }
 }
 
 .brand {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .55rem;
   text-decoration: none;
   color: #fff;
   line-height: 1.1;
-}
-.brand-mark {
-  height: clamp(58px, 12vw, 84px);
-  width: auto;
-  display: block;
-  filter: drop-shadow(0 2px 5px rgba(0,0,0,.28));
 }
 .brand .brand-name {
   font-weight: 800;
