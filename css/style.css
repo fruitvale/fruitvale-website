@@ -510,6 +510,7 @@ section { padding: 3rem 0; }
 }
 .doctor img {
   width: 100%;
+  height: auto;              /* beat the height="500" attribute so aspect-ratio applies */
   aspect-ratio: 1 / 1;
   object-fit: cover;
 }
