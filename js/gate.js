@@ -70,11 +70,15 @@
       });
     };
 
-    // shared identity block: shown whenever a real carrier is selected
+    // Shared identity block: shown for ANY selection, "No insurance"
+    // included. We still need a name + DOB on that path so the office can
+    // tie the answer to the booking -- without it a self-pay patient is
+    // indistinguishable from someone who never filled the form at all.
     var identity = root.querySelector(".identity-fields");
     if (identity) {
-      identity.classList.toggle("show", anyReal && !none);
-      if (!(anyReal && !none)) clearState(identity);
+      var wantIdentity = anyReal || none;
+      identity.classList.toggle("show", wantIdentity);
+      if (!wantIdentity) clearState(identity);
     }
 
     ["medical", "vsp", "eyemed"].forEach(function (key) {
@@ -139,7 +143,9 @@
   function formValid() {
     var carriers = selectedCarriers();
     if (carriers.length === 0) return false;
-    if (carriers.indexOf("none") !== -1) return true;         // no-insurance: nothing to fill
+    // "No insurance" has no member id to fill, but name + DOB are still
+    // required (they are the only fields shown), so fall through and
+    // validate them like any other selection.
     var inputs = activeInputs();
     if (inputs.length === 0) return false;
     return inputs.every(function (inp) { return validateField(inp, false); });
@@ -182,11 +188,11 @@
     var carriers = selectedCarriers();
     if (carriers.length === 0) return;
 
-    if (carriers.indexOf("none") !== -1) {           // no insurance -> straight to booking
-      go(BOOKING_URL);
-      return;
-    }
-
+    // NOTE: "No insurance" used to jump straight to booking without saving
+    // anything. That is why those patients showed up in the reconciler as
+    // "no website form matched" -- there was no record at all. It now goes
+    // through the same validate + save path, so the report can say plainly
+    // that they told us they are self-pay.
     var inputs = activeInputs();
     var allOk = true;
     inputs.forEach(function (inp) { if (!validateField(inp, true)) allOk = false; });
