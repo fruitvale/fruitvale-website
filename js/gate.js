@@ -30,7 +30,6 @@
     required:  root.getAttribute("data-msg-required")  || "This field is required.",
     badCin:    root.getAttribute("data-msg-badcin")    || "Enter a valid CIN (8 digits and a letter, e.g. 91234567A).",
     badEyemed: root.getAttribute("data-msg-badeyemed") || "Enter your full EyeMed member ID (at least 9 digits).",
-    badVspId:  root.getAttribute("data-msg-badvspid")  || "Enter the last 4 digits of the SSN or your VSP member ID.",
     badDob:    root.getAttribute("data-msg-baddob")    || "Enter a valid date of birth.",
     pickOne:   root.getAttribute("data-msg-pickone")   || "Please choose at least one option."
   };
@@ -40,7 +39,6 @@
   // trailing digits). We keep only the first 9 (the CIN) when saving.
   var RE_CIN    = /^\d{8}[A-Za-z]\d{0,5}$/;
   var RE_EYEMED = /^\d{9,}$/;                 // full EyeMed member ID
-  var RE_VSP_ID = /^[A-Za-z0-9]{4,17}$/;      // last-4 SSN or alphanumeric VSP unique ID
 
   var norm = function (v) { return (v || "").replace(/\s+/g, "").toUpperCase(); };
 
@@ -107,9 +105,6 @@
     } else if (type === "eyemed") {
       if (!val) { ok = false; msg = S.required; }
       else { ok = RE_EYEMED.test(val); msg = S.badEyemed; }
-    } else if (type === "vspid") {
-      if (!val) { ok = false; msg = S.required; }
-      else { ok = RE_VSP_ID.test(val); msg = S.badVspId; }
     } else if (type === "dob") {
       ok = validDob(raw); msg = raw.trim() ? S.badDob : S.required;
     }
@@ -168,9 +163,9 @@
       var cin = norm(val("medical-cin"));
       p.medical = { cin: cin, cin9: cin.slice(0, 9) };        // cin9 = what the engine's subscriberID needs
     }
-    if (carriers.indexOf("vsp") !== -1) {
-      p.vsp = { id: norm(val("vsp-id")) };
-    }
+    // VSP asks for nothing beyond name + DOB -- the office looks members
+    // up by name and date of birth, so the last-4-SSN box was friction for
+    // a value nothing ever used.
     if (carriers.indexOf("eyemed") !== -1) {
       p.eyemed = { memberId: norm(val("eyemed-id")) };
     }

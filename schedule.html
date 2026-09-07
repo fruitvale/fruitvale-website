@@ -46,7 +46,6 @@
            data-msg-required="This field is required."
            data-msg-badcin="Enter your CIN — 8 numbers and a letter (like 91234567A). You can also type the full number from your card."
            data-msg-badeyemed="Enter your full EyeMed member ID (at least 9 digits)."
-           data-msg-badvspid="Enter the last 4 digits of the SSN, or your VSP member ID."
            data-msg-baddob="Enter a valid date of birth."
            data-msg-pickone="Please choose at least one option.">
 
@@ -110,15 +109,6 @@
             </div>
           </div>
 
-          <!-- VSP -->
-          <div class="carrier-fields" data-carrier="vsp">
-            <h2>VSP</h2>
-            <div class="field">
-              <label for="vsp-id">Last 4 of SSN or VSP member ID</label>
-              <input type="text" id="vsp-id" data-validate="vspid" inputmode="text" autocomplete="off" placeholder="e.g. 5678">
-              <span class="error-msg"></span>
-            </div>
-          </div>
 
           <!-- EyeMed -->
           <div class="carrier-fields" data-carrier="eyemed">
@@ -198,7 +188,7 @@
   });
 })();
 </script>
-<script src="js/gate.js?v=6"></script>
+<script src="js/gate.js?v=7"></script>
 
 </body>
 </html>
