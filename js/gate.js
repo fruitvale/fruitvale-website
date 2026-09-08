@@ -25,6 +25,34 @@
   var FORM_ENTRY  = root.getAttribute("data-form-entry")  || "";
   var INTAKE_TIMEOUT_MS = 12000;
 
+  // ---- the form -> booking link ---------------------------------------------
+  // Every submission gets a short random token. It is saved in the sheet row
+  // AND carried to 4PatientCare as ReferredBy=<token>, which 4PC writes into
+  // the appointment record. The office reconciler matches booking to form by
+  // that token -- exactly -- instead of comparing name + birthday, which
+  // missed typos ("2/7" vs "2/8"), parents booking their children, and the
+  // "No insurance" path (which used to save nothing at all). The token is
+  // random and carries no patient information.
+  var TOKEN_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";   // no 0/O or 1/I
+  var pendingToken = "";
+  function newToken() {
+    var out = "", n = 8, i;
+    if (window.crypto && window.crypto.getRandomValues) {
+      var buf = new Uint8Array(n);
+      window.crypto.getRandomValues(buf);
+      for (i = 0; i < n; i++) out += TOKEN_ALPHABET[buf[i] % TOKEN_ALPHABET.length];
+    } else {
+      for (i = 0; i < n; i++) out += TOKEN_ALPHABET[Math.floor(Math.random() * TOKEN_ALPHABET.length)];
+    }
+    return out;
+  }
+  // The booking URLs in the page carry ReferredBy=website; swap in the token.
+  function withToken(url, token) {
+    if (!token) return url;
+    if (/([?&])ReferredBy=[^&]*/.test(url)) return url.replace(/([?&])ReferredBy=[^&]*/, "$1ReferredBy=" + token);
+    return url + (url.indexOf("?") === -1 ? "?" : "&") + "ReferredBy=" + token;
+  }
+
   // localized strings (set as data-* on #gate-root)
   var S = {
     required:  root.getAttribute("data-msg-required")  || "This field is required.",
@@ -172,7 +200,7 @@
   // ---- payload (no PHI kept anywhere but the request body) ------------------
   function buildPayload() {
     var carriers = selectedCarriers();
-    var p = { carriers: carriers };
+    var p = { carriers: carriers, token: pendingToken };
     // shared identity (used to match the booking confirmation)
     p.identity = {
       first: val("id-first").trim(),
@@ -206,11 +234,15 @@
     var carriers = selectedCarriers();
     if (carriers.length === 0) return;
 
-    // "No insurance" -> straight to booking. Nothing is asked and nothing is
-    // saved, on purpose. The tagged Source on NOINS_BOOKING_URL is what lets
-    // the office report still say the patient chose it.
+    pendingToken = newToken();
+
+    // "No insurance" -> straight to booking. Nothing is asked of them, but a
+    // minimal row (token + "none") IS saved now, so the booking can be matched
+    // to this answer by token. keepalive lets the POST finish after the page
+    // has already moved on to 4PatientCare -- no waiting, fail-open as ever.
     if (carriers.indexOf("none") !== -1) {
-      go(NOINS_BOOKING_URL || BOOKING_URL);
+      postIntake(buildPayload(), true).catch(function () {});
+      go(withToken(NOINS_BOOKING_URL || BOOKING_URL, pendingToken));
       return;
     }
 
@@ -235,7 +267,7 @@
       });
   });
 
-  function postIntake(payload) {
+  function postIntake(payload, keepalive) {
     if (!FORM_ACTION || !FORM_ENTRY) return Promise.reject(new Error("no-endpoint"));  // fail-open
     // Google Forms' formResponse endpoint: url-encoded, no CORS headers, so we
     // send it "no-cors" (opaque — we can't read the result, but the response is
@@ -249,6 +281,7 @@
       mode: "no-cors",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: body.toString(),
+      keepalive: !!keepalive,
       signal: ctrl ? ctrl.signal : undefined
     }).then(function (r) {
       if (t) clearTimeout(t);
@@ -258,12 +291,12 @@
 
   // ---- confirmation popup ---------------------------------------------------
   function showModal() {
-    if (!modal) { go(BOOKING_URL); return; }
+    if (!modal) { go(withToken(BOOKING_URL, pendingToken)); return; }
     modal.classList.add("open");
     if (modalContinue) modalContinue.focus();
   }
   if (modalContinue) {
-    modalContinue.addEventListener("click", function () { go(BOOKING_URL); });
+    modalContinue.addEventListener("click", function () { go(withToken(BOOKING_URL, pendingToken)); });
   }
 
   function go(url) { window.location.href = url; }
