@@ -46,6 +46,7 @@
            data-msg-required="This field is required."
            data-msg-badcin="Enter your CIN — 8 numbers and a letter (like 91234567A). You can also type the full number from your card."
            data-msg-badeyemed="Enter your full EyeMed member ID (at least 9 digits)."
+           data-msg-badmedicare="Enter the 11-character Medicare number from your card, e.g. 1EG4-TE5-MK72."
            data-msg-baddob="Enter a valid date of birth."
            data-msg-pickone="Please choose at least one option.">
 
@@ -59,6 +60,7 @@
 
           <div class="carrier-options">
             <label class="carrier-option"><input type="checkbox" name="carrier" value="medical"> Medi-Cal (Alameda Alliance)</label>
+            <label class="carrier-option"><input type="checkbox" name="carrier" value="medicare"> Medicare</label>
             <label class="carrier-option"><input type="checkbox" name="carrier" value="vsp"> VSP (Blue Cross/Blue Shield)</label>
             <label class="carrier-option"><input type="checkbox" name="carrier" value="eyemed"> EyeMed</label>
             <label class="carrier-option"><input type="checkbox" name="carrier" value="none"> No insurance</label>
@@ -110,12 +112,32 @@
           </div>
 
 
+          <!-- Medicare -->
+          <div class="carrier-fields" data-carrier="medicare">
+            <h2>Medicare</h2>
+            <div class="field">
+              <label for="medicare-id">Medicare number <span class="field-hint">(11 characters on your red, white and blue card)</span></label>
+              <input type="text" id="medicare-id" data-validate="medicare" inputmode="text" autocomplete="off" placeholder="e.g. 1EG4-TE5-MK72">
+              <span class="error-msg"></span>
+            </div>
+            <div class="cin-help">
+              <p class="cin-help-label">Find your Medicare number on your card:</p>
+              <div class="cin-cards">
+                <div class="cin-card"><figure>
+                  <img src="assets/medicare-id.webp" alt="Medicare Health Insurance card with the Medicare Number circled in red" width="760" height="492">
+                  <figcaption>Medicare card — the Medicare Number</figcaption>
+                </figure></div>
+              </div>
+            </div>
+          </div>
+
+
           <!-- EyeMed -->
           <div class="carrier-fields" data-carrier="eyemed">
             <h2>EyeMed</h2>
             <div class="field">
-              <label for="eyemed-id">EyeMed member ID <span class="field-hint">(on your EyeMed card)</span></label>
-              <input type="text" id="eyemed-id" data-validate="eyemed" inputmode="numeric" autocomplete="off" placeholder="e.g. 812345678">
+              <label for="eyemed-id">EyeMed member ID <span class="field-hint">(on your EyeMed card — optional)</span></label>
+              <input type="text" id="eyemed-id" data-validate="eyemed" data-optional inputmode="numeric" autocomplete="off" placeholder="e.g. 812345678">
               <span class="error-msg"></span>
             </div>
           </div>
@@ -188,7 +210,7 @@
   });
 })();
 </script>
-<script src="js/gate.js?v=7"></script>
+<script src="js/gate.js?v=8"></script>
 
 </body>
 </html>

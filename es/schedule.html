@@ -46,6 +46,7 @@
            data-msg-required="Este campo es obligatorio."
            data-msg-badcin="Ingrese su CIN — 8 números y una letra (como 91234567A). También puede escribir el número completo de su tarjeta."
            data-msg-badeyemed="Ingrese su número de miembro de EyeMed completo (al menos 9 dígitos)."
+           data-msg-badmedicare="Ingrese el número de Medicare de 11 caracteres de su tarjeta, ej. 1EG4-TE5-MK72."
            data-msg-baddob="Ingrese una fecha de nacimiento válida."
            data-msg-pickone="Por favor elija al menos una opción.">
 
@@ -59,6 +60,7 @@
 
           <div class="carrier-options">
             <label class="carrier-option"><input type="checkbox" name="carrier" value="medical"> Medi-Cal (Alameda Alliance)</label>
+            <label class="carrier-option"><input type="checkbox" name="carrier" value="medicare"> Medicare</label>
             <label class="carrier-option"><input type="checkbox" name="carrier" value="vsp"> VSP (Blue Cross/Blue Shield)</label>
             <label class="carrier-option"><input type="checkbox" name="carrier" value="eyemed"> EyeMed</label>
             <label class="carrier-option"><input type="checkbox" name="carrier" value="none"> Sin aseguranza</label>
@@ -110,12 +112,32 @@
           </div>
 
 
+          <!-- Medicare -->
+          <div class="carrier-fields" data-carrier="medicare">
+            <h2>Medicare</h2>
+            <div class="field">
+              <label for="medicare-id">Número de Medicare <span class="field-hint">(11 caracteres en su tarjeta roja, blanca y azul)</span></label>
+              <input type="text" id="medicare-id" data-validate="medicare" inputmode="text" autocomplete="off" placeholder="ej. 1EG4-TE5-MK72">
+              <span class="error-msg"></span>
+            </div>
+            <div class="cin-help">
+              <p class="cin-help-label">Encuentre su número de Medicare en su tarjeta:</p>
+              <div class="cin-cards">
+                <div class="cin-card"><figure>
+                  <img src="../assets/medicare-id.webp" alt="Tarjeta de Medicare con el Número de Medicare marcado en rojo" width="760" height="492">
+                  <figcaption>Tarjeta de Medicare — el Número de Medicare</figcaption>
+                </figure></div>
+              </div>
+            </div>
+          </div>
+
+
           <!-- EyeMed -->
           <div class="carrier-fields" data-carrier="eyemed">
             <h2>EyeMed</h2>
             <div class="field">
-              <label for="eyemed-id">Número de miembro de EyeMed <span class="field-hint">(en su tarjeta de EyeMed)</span></label>
-              <input type="text" id="eyemed-id" data-validate="eyemed" inputmode="numeric" autocomplete="off" placeholder="ej. 812345678">
+              <label for="eyemed-id">Número de miembro de EyeMed <span class="field-hint">(en su tarjeta de EyeMed — opcional)</span></label>
+              <input type="text" id="eyemed-id" data-validate="eyemed" data-optional inputmode="numeric" autocomplete="off" placeholder="ej. 812345678">
               <span class="error-msg"></span>
             </div>
           </div>
@@ -188,7 +210,7 @@
   });
 })();
 </script>
-<script src="../js/gate.js?v=7"></script>
+<script src="../js/gate.js?v=8"></script>
 
 </body>
 </html>

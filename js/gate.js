@@ -30,6 +30,7 @@
     required:  root.getAttribute("data-msg-required")  || "This field is required.",
     badCin:    root.getAttribute("data-msg-badcin")    || "Enter a valid CIN (8 digits and a letter, e.g. 91234567A).",
     badEyemed: root.getAttribute("data-msg-badeyemed") || "Enter your full EyeMed member ID (at least 9 digits).",
+    badMedicare: root.getAttribute("data-msg-badmedicare") || "Enter the 11-character Medicare number from your card, e.g. 1EG4-TE5-MK72.",
     badDob:    root.getAttribute("data-msg-baddob")    || "Enter a valid date of birth.",
     pickOne:   root.getAttribute("data-msg-pickone")   || "Please choose at least one option."
   };
@@ -39,6 +40,9 @@
   // trailing digits). We keep only the first 9 (the CIN) when saving.
   var RE_CIN    = /^\d{8}[A-Za-z]\d{0,5}$/;
   var RE_EYEMED = /^\d{9,}$/;                 // full EyeMed member ID
+  // MBI: 11 characters, printed 4-3-4. norm() strips spaces but not dashes,
+  // so accept it typed either way.
+  var RE_MEDICARE = /^[0-9A-Z]{4}-?[0-9A-Z]{3}-?[0-9A-Z]{4}$/;
 
   var norm = function (v) { return (v || "").replace(/\s+/g, "").toUpperCase(); };
 
@@ -80,10 +84,14 @@
       if (!(anyReal && !none)) clearState(identity);
     }
 
-    ["medical", "vsp", "eyemed"].forEach(function (key) {
+    var hasMedical = carrierBoxes.some(function (b) { return b.value === "medical" && b.checked; });
+    ["medical", "medicare", "vsp", "eyemed"].forEach(function (key) {
       var group = root.querySelector('.carrier-fields[data-carrier="' + key + '"]');
       if (!group) return;
       var on = !none && carrierBoxes.some(function (b) { return b.value === key && b.checked; });
+      // Medicare + Medi-Cal together: the CIN is all the office needs, so do
+      // not make them dig the red-white-and-blue card out too.
+      if (key === "medicare" && hasMedical) on = false;
       group.classList.toggle("show", on);
       if (!on) clearState(group);   // hidden groups must not block submit
     });
@@ -96,6 +104,15 @@
     var raw = inp.value;
     var val = norm(raw);
     var ok = true, msg = "";
+    // data-optional: blank is fine, but if they DO type something it still
+    // has to look right.
+    var optional = inp.hasAttribute("data-optional");
+    if (optional && !val) {
+      inp.classList.remove("invalid", "valid");
+      var f0 = inp.closest(".field");
+      if (f0) { f0.classList.remove("errored"); var e0 = f0.querySelector(".error-msg"); if (e0) e0.textContent = ""; }
+      return true;
+    }
 
     if (type === "required") {
       ok = raw.trim().length > 0; msg = S.required;
@@ -105,6 +122,9 @@
     } else if (type === "eyemed") {
       if (!val) { ok = false; msg = S.required; }
       else { ok = RE_EYEMED.test(val); msg = S.badEyemed; }
+    } else if (type === "medicare") {
+      if (!val) { ok = false; msg = S.required; }
+      else { ok = RE_MEDICARE.test(val); msg = S.badMedicare; }
     } else if (type === "dob") {
       ok = validDob(raw); msg = raw.trim() ? S.badDob : S.required;
     }
@@ -168,6 +188,10 @@
     // a value nothing ever used.
     if (carriers.indexOf("eyemed") !== -1) {
       p.eyemed = { memberId: norm(val("eyemed-id")) };
+    }
+    if (carriers.indexOf("medicare") !== -1) {
+      // blank when they also picked Medi-Cal -- the CIN covers it
+      p.medicare = { id: norm(val("medicare-id")) };
     }
     return p;
   }
