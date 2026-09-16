@@ -46,11 +46,18 @@
     }
     return out;
   }
-  // The booking URLs in the page carry ReferredBy=website; swap in the token.
+  // The booking URLs in the page carry Source=website (or website_noins) and
+  // ReferredBy=website. The token goes into BOTH: 4PatientCare keeps Source on
+  // every booking but blanks Referred By about half the time (seen 09/16/2026),
+  // so Source is the copy the office can rely on; Referred By stays as a spare.
+  //   Source=website        -> Source=website_G7K2PQXY
+  //   Source=website_noins  -> Source=website_noins_G7K2PQXY
   function withToken(url, token) {
     if (!token) return url;
+    if (/([?&])Source=[^&]*/.test(url)) url = url.replace(/([?&])Source=([^&]*)/, "$1Source=$2_" + token);
+    else url += (url.indexOf("?") === -1 ? "?" : "&") + "Source=website_" + token;
     if (/([?&])ReferredBy=[^&]*/.test(url)) return url.replace(/([?&])ReferredBy=[^&]*/, "$1ReferredBy=" + token);
-    return url + (url.indexOf("?") === -1 ? "?" : "&") + "ReferredBy=" + token;
+    return url + "&ReferredBy=" + token;
   }
 
   // localized strings (set as data-* on #gate-root)
