@@ -94,6 +94,12 @@
       .map(function (b) { return b.value; });
   }
   function radioVal(name) { var v = checkedVals(name); return v.length ? v[0] : ""; }
+  // only while its block is showing: a block hidden again keeps what was typed in it
+  function shownVal(id) { var el = $(id); return el && isActive(el) ? val(id) : ""; }
+  function shownRadio(name) {
+    var el = form.querySelector('input[name="' + name + '"]');
+    return el && isActive(el) ? radioVal(name) : "";
+  }
   function digits(s) { return String(s || "").replace(/\D/g, ""); }
   function pad2(n) { return (n < 10 ? "0" : "") + n; }
 
@@ -413,7 +419,7 @@
   function buildPayload(code, step) {
     var signer = radioVal("signer");
     var p = {
-      v: 1,
+      v: 2,                  // 2 = has the health section (10/27/2026)
       form: "patient-info",
       lang: LANG,
       ref: code,
@@ -430,6 +436,22 @@
       // No insurance section any more (user 10/27/2026: "get rid of ... the
       // insurance part") -- the front desk gets that from the card at check-in.
       // No emergency contact either (user 10/27/2026: "get rid of the emergency contact").
+      // The short health section (user 10/27/2026: the paper sheet's medical part,
+      // "as simple as possible"). Codes, not words -- the office PDF turns them
+      // into English whichever language the form was in.
+      health: {
+        reason: radioVal("h-reason"),
+        eye: shownRadio("h-eye"), howLong: shownVal("h-howlong"), problem: shownVal("h-problem"),
+        lastExam: radioVal("h-lastexam"),
+        wear: checkedVals("h-wear"), wantsContacts: checkedVals("h-clint").length > 0,
+        meds: radioVal("h-meds"), medsList: shownVal("h-meds-list"),
+        allergies: radioVal("h-allergy"), allergyList: shownVal("h-allergy-list"),
+        conditions: checkedVals("h-cond"), diabetesYear: shownVal("h-dm-year"), insulin: shownRadio("h-insulin"),
+        otherHealth: val("h-cond-other"),
+        eyeHistory: checkedVals("h-eyehx"), symptoms: checkedVals("h-sym"), family: checkedVals("h-fam"),
+        smoking: radioVal("h-smoke"), screens: radioVal("h-screen"),
+        pcp: val("h-pcp"), heard: radioVal("h-heard")
+      },
       // The visit + health-history questions of the full paper sheet are left
       // out for now (user 10/27/2026: "just have the patient info part").
       sign: {

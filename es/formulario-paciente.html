@@ -39,7 +39,7 @@
         <a class="pf-lang-banner" href="../patient-form.html" lang="en" hreflang="en">Prefer English? Tap here</a>
 
         <h1>Información del Paciente</h1>
-        <p class="gate-intro">Bienvenido, y gracias por elegir Fruitvale Optometry. Esto reemplaza el formulario en papel de la recepción y toma unos 3 minutos.</p>
+        <p class="gate-intro">Bienvenido, y gracias por elegir Fruitvale Optometry. Esto reemplaza el formulario en papel de la recepción y toma unos 5 minutos.</p>
         <p class="pf-req-note">Las preguntas con <span class="pf-star">*</span> son obligatorias. Todo lo demás es opcional — puede saltar lo que no sepa.</p>
 
         <form id="pf-form" novalidate autocomplete="on">
@@ -148,9 +148,183 @@
             </div>
           </section>
 
-          <!-- 2. Acknowledgement + signature (no emergency contact since 10/27/2026 -- user: "get rid of the emergency contact") -->
+          <!-- 2. Health: the paper sheet's medical part cut down (user 10/27/2026: "want to make it as simple
+               as possible"). All optional; codes in the payload, tools\patient_forms.py turns them into words. -->
+          <section class="pf-sec" aria-labelledby="sec-health">
+            <h2 id="sec-health"><span class="pf-num">2</span> <span>Su salud <span class="field-hint">(como un minuto — toque lo que aplique)</span></span></h2>
+
+            <h3 id="lbl-reason">¿Qué lo trae hoy?</h3>
+            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-reason">
+              <label class="pf-chip"><input type="radio" name="h-reason" value="exam"> Examen de la vista de rutina</label>
+              <label class="pf-chip"><input type="radio" name="h-reason" value="glasses"> Lentes nuevos</label>
+              <label class="pf-chip"><input type="radio" name="h-reason" value="contacts"> Lentes de contacto</label>
+              <label class="pf-chip"><input type="radio" name="h-reason" value="problem"> Un problema de los ojos</label>
+            </div>
+            <div class="pf-when pf-sub" data-when="h-reason:problem">
+              <span class="pf-sig-label" id="lbl-eye">¿Cuál ojo?</span>
+              <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-eye">
+                <label class="pf-chip"><input type="radio" name="h-eye" value="right"> Derecho</label>
+                <label class="pf-chip"><input type="radio" name="h-eye" value="left"> Izquierdo</label>
+                <label class="pf-chip"><input type="radio" name="h-eye" value="both"> Los dos</label>
+              </div>
+              <div class="pf-row c2">
+                <div class="field">
+                  <label for="h-howlong">¿Desde hace cuánto tiempo?</label>
+                  <input type="text" id="h-howlong" autocomplete="off" maxlength="30" placeholder="ej. 2 semanas">
+                  <span class="error-msg"></span>
+                </div>
+              </div>
+              <div class="field">
+                <label for="h-problem">¿Qué le pasa?</label>
+                <textarea id="h-problem" maxlength="300" placeholder="ej. veo borroso cuando manejo de noche"></textarea>
+                <span class="error-msg"></span>
+              </div>
+            </div>
+
+            <h3 id="lbl-lastexam">¿Cuándo fue su último examen de la vista?</h3>
+            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-lastexam">
+              <label class="pf-chip"><input type="radio" name="h-lastexam" value="lt1"> Hace menos de 1 año</label>
+              <label class="pf-chip"><input type="radio" name="h-lastexam" value="1-2"> Hace 1–2 años</label>
+              <label class="pf-chip"><input type="radio" name="h-lastexam" value="3plus"> Hace 3 años o más</label>
+              <label class="pf-chip"><input type="radio" name="h-lastexam" value="never"> Nunca / no sé</label>
+            </div>
+
+            <h3 id="lbl-wear">¿Usa…</h3>
+            <div class="pf-chips" role="group" aria-labelledby="lbl-wear">
+              <label class="pf-chip"><input type="checkbox" name="h-wear" value="glasses"> Lentes</label>
+              <label class="pf-chip"><input type="checkbox" name="h-wear" value="contacts"> Lentes de contacto</label>
+              <label class="pf-chip none-chip"><input type="checkbox" name="h-wear" value="neither" data-exclusive> Ninguno</label>
+            </div>
+            <div class="pf-chips">
+              <label class="pf-chip"><input type="checkbox" name="h-clint" value="yes"> Me gustaría probar lentes de contacto</label>
+            </div>
+
+            <h3 id="lbl-meds">¿Toma alguna medicina? <span class="field-hint">(también gotas para los ojos)</span></h3>
+            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-meds">
+              <label class="pf-chip"><input type="radio" name="h-meds" value="none"> No</label>
+              <label class="pf-chip"><input type="radio" name="h-meds" value="yes"> Sí</label>
+            </div>
+            <div class="pf-when pf-sub" data-when="h-meds:yes">
+              <div class="field">
+                <label for="h-meds-list">¿Cuáles?</label>
+                <textarea id="h-meds-list" maxlength="400" placeholder="ej. metformina, lisinopril, lágrimas artificiales"></textarea>
+                <span class="error-msg"></span>
+              </div>
+            </div>
+
+            <h3 id="lbl-allergy">¿Es alérgico a alguna medicina?</h3>
+            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-allergy">
+              <label class="pf-chip"><input type="radio" name="h-allergy" value="none"> No</label>
+              <label class="pf-chip"><input type="radio" name="h-allergy" value="yes"> Sí</label>
+            </div>
+            <div class="pf-when pf-sub" data-when="h-allergy:yes">
+              <div class="field">
+                <label for="h-allergy-list">¿A cuáles?</label>
+                <textarea id="h-allergy-list" maxlength="300" placeholder="ej. penicilina"></textarea>
+                <span class="error-msg"></span>
+              </div>
+            </div>
+
+            <h3 id="lbl-cond">¿Tiene alguno de estos? <span class="field-hint">(toque todos los que apliquen)</span></h3>
+            <div class="pf-chips" role="group" aria-labelledby="lbl-cond">
+              <label class="pf-chip"><input type="checkbox" name="h-cond" value="diabetes"> Diabetes</label>
+              <label class="pf-chip"><input type="checkbox" name="h-cond" value="hbp"> Presión alta</label>
+              <label class="pf-chip"><input type="checkbox" name="h-cond" value="chol"> Colesterol alto</label>
+              <label class="pf-chip"><input type="checkbox" name="h-cond" value="thyroid"> Problema de tiroides</label>
+              <label class="pf-chip"><input type="checkbox" name="h-cond" value="arthritis"> Artritis o lupus</label>
+              <label class="pf-chip"><input type="checkbox" name="h-cond" value="migraine"> Migrañas</label>
+              <label class="pf-chip"><input type="checkbox" name="h-cond" value="pregnant"> Embarazada o amamantando</label>
+              <label class="pf-chip none-chip"><input type="checkbox" name="h-cond" value="none" data-exclusive> Ninguno de estos</label>
+            </div>
+            <div class="pf-when pf-sub" data-when="h-cond:diabetes">
+              <div class="pf-row c2">
+                <div class="field">
+                  <label for="h-dm-year">Año en que se lo dijeron</label>
+                  <input type="text" id="h-dm-year" data-validate="year" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="ej. 2015">
+                  <span class="error-msg"></span>
+                </div>
+              </div>
+              <span class="pf-sig-label" id="lbl-insulin">¿Usa insulina?</span>
+              <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-insulin">
+                <label class="pf-chip"><input type="radio" name="h-insulin" value="yes"> Sí</label>
+                <label class="pf-chip"><input type="radio" name="h-insulin" value="no"> No</label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="h-cond-other">¿Algo más sobre su salud?</label>
+              <input type="text" id="h-cond-other" autocomplete="off" maxlength="150">
+              <span class="error-msg"></span>
+            </div>
+
+            <h3 id="lbl-eyehx">¿Ha tenido alguno de estos?</h3>
+            <div class="pf-chips" role="group" aria-labelledby="lbl-eyehx">
+              <label class="pf-chip"><input type="checkbox" name="h-eyehx" value="glaucoma"> Glaucoma</label>
+              <label class="pf-chip"><input type="checkbox" name="h-eyehx" value="cataract"> Cataratas</label>
+              <label class="pf-chip"><input type="checkbox" name="h-eyehx" value="amd"> Degeneración macular</label>
+              <label class="pf-chip"><input type="checkbox" name="h-eyehx" value="retina"> Desgarro o desprendimiento de retina</label>
+              <label class="pf-chip"><input type="checkbox" name="h-eyehx" value="lazy"> Ojo flojo u ojo desviado</label>
+              <label class="pf-chip"><input type="checkbox" name="h-eyehx" value="injury"> Lesión en el ojo</label>
+              <label class="pf-chip"><input type="checkbox" name="h-eyehx" value="surgery"> Cirugía de los ojos (LASIK, cataratas…)</label>
+              <label class="pf-chip none-chip"><input type="checkbox" name="h-eyehx" value="none" data-exclusive> Ninguno</label>
+            </div>
+
+            <h3 id="lbl-sym">¿Le molesta algo de los ojos ahora?</h3>
+            <div class="pf-chips" role="group" aria-labelledby="lbl-sym">
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="blurfar"> Veo borroso de lejos</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="blurnear"> Veo borroso de cerca / al leer</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="computer"> Cansancio en la computadora</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="dry"> Ojos secos, con comezón o llorosos</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="red"> Ojos rojos o con dolor</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="floaters"> Manchitas que flotan</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="flashes"> Destellos de luz</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="double"> Visión doble</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="headache"> Dolores de cabeza</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="night"> Me cuesta ver de noche</label>
+              <label class="pf-chip none-chip"><input type="checkbox" name="h-sym" value="none" data-exclusive> Nada</label>
+            </div>
+
+            <h3 id="lbl-fam">¿Alguien en su familia ha tenido…</h3>
+            <div class="pf-chips" role="group" aria-labelledby="lbl-fam">
+              <label class="pf-chip"><input type="checkbox" name="h-fam" value="glaucoma"> Glaucoma</label>
+              <label class="pf-chip"><input type="checkbox" name="h-fam" value="amd"> Degeneración macular</label>
+              <label class="pf-chip"><input type="checkbox" name="h-fam" value="diabetes"> Diabetes</label>
+              <label class="pf-chip"><input type="checkbox" name="h-fam" value="blind"> Ceguera</label>
+              <label class="pf-chip none-chip"><input type="checkbox" name="h-fam" value="none" data-exclusive> Ninguno / no sé</label>
+            </div>
+
+            <h3 id="lbl-smoke">¿Fuma?</h3>
+            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-smoke">
+              <label class="pf-chip"><input type="radio" name="h-smoke" value="never"> Nunca</label>
+              <label class="pf-chip"><input type="radio" name="h-smoke" value="quit"> Ya lo dejé</label>
+              <label class="pf-chip"><input type="radio" name="h-smoke" value="yes"> Sí</label>
+            </div>
+
+            <h3 id="lbl-screen">Tiempo frente a pantallas al día <span class="field-hint">(celular, computadora, TV)</span></h3>
+            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-screen">
+              <label class="pf-chip"><input type="radio" name="h-screen" value="lt2"> Menos de 2 horas</label>
+              <label class="pf-chip"><input type="radio" name="h-screen" value="2-6"> 2–6 horas</label>
+              <label class="pf-chip"><input type="radio" name="h-screen" value="6plus"> 6 horas o más</label>
+            </div>
+
+            <div class="field">
+              <label for="h-pcp">Su doctor de cabecera <span class="field-hint">(nombre o clínica)</span></label>
+              <input type="text" id="h-pcp" autocomplete="off" maxlength="60">
+              <span class="error-msg"></span>
+            </div>
+
+            <h3 id="lbl-heard">¿Cómo supo de nosotros?</h3>
+            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-heard">
+              <label class="pf-chip"><input type="radio" name="h-heard" value="google"> Google</label>
+              <label class="pf-chip"><input type="radio" name="h-heard" value="insurance"> Mi aseguranza</label>
+              <label class="pf-chip"><input type="radio" name="h-heard" value="friend"> Un amigo o familiar</label>
+              <label class="pf-chip"><input type="radio" name="h-heard" value="walkin"> Pasé por aquí</label>
+              <label class="pf-chip"><input type="radio" name="h-heard" value="other"> Otro</label>
+            </div>
+          </section>
+
+          <!-- 3. Acknowledgement + signature (no emergency contact since 10/27/2026 -- user: "get rid of the emergency contact") -->
           <section class="pf-sec" aria-labelledby="sec-sign">
-            <h2 id="sec-sign"><span class="pf-num">2</span> Acuse de recibo y firma</h2>
+            <h2 id="sec-sign"><span class="pf-num">3</span> Acuse de recibo y firma</h2>
 
             <div class="pf-ack" id="pf-ack-text">
               <p>He revisado el Aviso de Prácticas de Privacidad de HIPAA, se me ha dado la oportunidad de hablar sobre mi derecho a la privacidad y sé que, si lo pido, me darán una copia del aviso. Certifico que la información de arriba es correcta según mi leal saber y entender. Autorizo a mi aseguranza a pagarle directamente a Fruitvale Optometry por los servicios que reciba aquí. Entiendo que la descripción de los beneficios de mi aseguranza no garantiza el pago, y acepto la responsabilidad de todos los cobros que mi aseguranza no cubra, más cualquier cargo necesario para cobrar deudas pendientes.</p>
@@ -225,7 +399,7 @@
   </div>
 </footer>
 
-<script src="../js/patient-form.js?v=4"></script>
+<script src="../js/patient-form.js?v=5"></script>
 
 </body>
 </html>
