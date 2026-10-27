@@ -429,7 +429,7 @@
       },
       // No insurance section any more (user 10/27/2026: "get rid of ... the
       // insurance part") -- the front desk gets that from the card at check-in.
-      emergency: { name: val("e-name"), phone: val("e-phone"), rel: val("e-rel") },
+      // No emergency contact either (user 10/27/2026: "get rid of the emergency contact").
       // The visit + health-history questions of the full paper sheet are left
       // out for now (user 10/27/2026: "just have the patient info part").
       sign: {
