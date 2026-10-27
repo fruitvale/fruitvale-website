@@ -44,7 +44,7 @@
       state: "Use the 2-letter state, like CA.",
       phone: "Enter a 10-digit phone number.",
       email: "That email doesn't look right.",
-      ssn4: "Enter exactly 4 digits.",
+      ssn: "Enter all 9 digits, like 123-45-6789.",
       year: "Enter a 4-digit year.",
       mi: "One letter.",
       agree: "Please check the box to agree.",
@@ -65,7 +65,7 @@
       state: "Use las 2 letras del estado, como CA.",
       phone: "Escriba un teléfono de 10 dígitos.",
       email: "Ese correo no parece correcto.",
-      ssn4: "Escriba exactamente 4 dígitos.",
+      ssn: "Escriba los 9 dígitos, como 123-45-6789.",
       year: "Escriba un año de 4 dígitos.",
       mi: "Una letra.",
       agree: "Marque la casilla para aceptar.",
@@ -169,19 +169,26 @@
     else if (d.length > 3) out = "(" + d.slice(0, 3) + ") " + d.slice(3);
     if (out !== el.value) el.value = out;
   }
+  function fmtSsn(el) {
+    var d = digits(el.value).slice(0, 9), out = d;
+    if (d.length > 5) out = d.slice(0, 3) + "-" + d.slice(3, 5) + "-" + d.slice(5);
+    else if (d.length > 3) out = d.slice(0, 3) + "-" + d.slice(3);
+    if (out !== el.value) el.value = out;
+  }
   var NAME_BLOCK = /[^\p{L}\s'’.\-]/gu;     // letters, space, ' ’ . - only (Mary-Jane, O'Brien, Jr.)
   form.querySelectorAll("input[data-validate]").forEach(function (inp) {
     var kind = inp.getAttribute("data-validate");
     inp.addEventListener("input", function () {
       if (kind === "dob") fmtDate(inp);
       else if (kind === "phone") fmtPhone(inp);
+      else if (kind === "ssn") fmtSsn(inp);
       else if (kind === "name" || kind === "mi") {
         var clean = inp.value.replace(NAME_BLOCK, "");
         if (clean !== inp.value) inp.value = clean;
       } else if (kind === "state") {
         var up = inp.value.toUpperCase();
         if (up !== inp.value) inp.value = up;
-      } else if (kind === "zip" || kind === "ssn4" || kind === "year") {
+      } else if (kind === "zip" || kind === "year") {
         var dd = inp.value.replace(/[^\d-]/g, "");
         if (dd !== inp.value) inp.value = dd;
       }
@@ -216,7 +223,7 @@
       case "state": return /^[A-Z]{2}$/.test(raw) ? "" : T.state;
       case "phone": return digits(raw).length === 10 ? "" : T.phone;
       case "email": return RE_EMAIL.test(raw) ? "" : T.email;
-      case "ssn4":  return /^\d{4}$/.test(raw) ? "" : T.ssn4;
+      case "ssn":   return digits(raw).length === 9 ? "" : T.ssn;
       case "year":  return (/^\d{4}$/.test(raw) && +raw <= new Date().getFullYear() && +raw > 1900) ? "" : T.year;
     }
     return "";
@@ -418,7 +425,7 @@
         address: val("p-address"), apt: val("p-apt"), city: val("p-city"),
         state: val("p-state").toUpperCase(), zip: val("p-zip"),
         cell: val("p-cell"), work: val("p-work"), email: val("p-email"),
-        occupation: val("p-occupation"), ssn4: val("p-ssn4")
+        occupation: val("p-occupation"), ssn: val("p-ssn")
       },
       // No insurance section any more (user 10/27/2026: "get rid of ... the
       // insurance part") -- the front desk gets that from the card at check-in.
