@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Formulario de Información del Paciente — Fruitvale Optometry</title>
+<meta name="description" content="Llene su información de paciente y el acuse de privacidad de Fruitvale Optometry antes de su visita.">
+<link rel="alternate" hreflang="en" href="https://www.fruitvaleoptometry.com/patient-form.html">
+<link rel="stylesheet" href="../css/style.css?v=4">
+<link rel="stylesheet" href="../css/patient-form.css?v=1">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-name">Fruitvale Optometry</span>
+    </a>
+    <a class="lang-switch" href="../patient-form.html" lang="en" hreflang="en">English</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="gate-wrap">
+    <div class="container">
+      <div class="gate-card pf-card"
+           id="pf-root"
+           data-lang="es"
+           data-notice-version="2004-04-01"
+           data-form-action="https://docs.google.com/forms/d/e/1FAIpQLSd7InIOXvM05Q7xXLanUOTsroNgq4LZmCvqgJXtrwlMVxfyWA/formResponse"
+           data-form-entry="entry.970082563">
+
+        <a class="pf-lang-banner" href="../patient-form.html" lang="en" hreflang="en">Prefer English? Tap here</a>
+
+        <h1>Información del Paciente</h1>
+        <p class="gate-intro">Bienvenido, y gracias por elegir Fruitvale Optometry. Esto reemplaza el formulario en papel de la recepción y toma unos 3 minutos.</p>
+        <p class="pf-req-note">Las preguntas con <span class="pf-star">*</span> son obligatorias. Todo lo demás es opcional — puede saltar lo que no sepa.</p>
+
+        <form id="pf-form" novalidate autocomplete="on">
+
+          <!-- 1. About you -->
+          <section class="pf-sec" aria-labelledby="sec-you">
+            <h2 id="sec-you"><span class="pf-num">1</span> <span>Sus datos <span class="field-hint">(del paciente)</span></span></h2>
+
+            <div class="pf-row name">
+              <div class="field">
+                <label for="p-first">Nombre <span class="pf-star">*</span></label>
+                <input type="text" id="p-first" data-req data-validate="name" autocomplete="given-name" maxlength="40">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="p-last">Apellido(s) <span class="pf-star">*</span></label>
+                <input type="text" id="p-last" data-req data-validate="name" autocomplete="family-name" maxlength="40">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="p-mi">Inicial del 2.º nombre</label>
+                <input type="text" id="p-mi" data-validate="mi" autocomplete="additional-name" maxlength="1">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+
+            <div class="pf-row c2">
+              <div class="field">
+                <label for="p-dob">Fecha de nacimiento <span class="pf-star">*</span> <span class="field-hint">(MM/DD/AAAA)</span></label>
+                <input type="text" id="p-dob" data-req data-validate="dob" inputmode="numeric" autocomplete="bday" placeholder="MM/DD/AAAA" maxlength="10">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="p-pronouns">Pronombre preferido</label>
+                <input type="text" id="p-pronouns" autocomplete="off" maxlength="30" placeholder="ej. ella">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+
+            <span class="pf-sig-label" id="lbl-sex">Sexo <span class="pf-star">*</span></span>
+            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-sex" data-req-group="p-sex">
+              <label class="pf-chip"><input type="radio" name="p-sex" value="F"> Mujer</label>
+              <label class="pf-chip"><input type="radio" name="p-sex" value="M"> Hombre</label>
+              <label class="pf-chip"><input type="radio" name="p-sex" value="X"> Otro</label>
+            </div>
+            <p class="pf-chips-err">Por favor elija una opción.</p>
+
+            <div class="pf-row addr">
+              <div class="field">
+                <label for="p-address">Dirección <span class="pf-star">*</span></label>
+                <input type="text" id="p-address" data-req autocomplete="address-line1" maxlength="80">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="p-apt">Apt #</label>
+                <input type="text" id="p-apt" autocomplete="address-line2" maxlength="12">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+            <div class="pf-row city">
+              <div class="field">
+                <label for="p-city">Ciudad <span class="pf-star">*</span></label>
+                <input type="text" id="p-city" data-req autocomplete="address-level2" maxlength="40">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="p-state">Estado <span class="pf-star">*</span></label>
+                <input type="text" id="p-state" data-req data-validate="state" autocomplete="address-level1" maxlength="2" value="CA">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="p-zip">Código postal <span class="pf-star">*</span></label>
+                <input type="text" id="p-zip" data-req data-validate="zip" inputmode="numeric" autocomplete="postal-code" maxlength="10">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+
+            <div class="pf-row c2">
+              <div class="field">
+                <label for="p-cell">Teléfono celular / de casa <span class="pf-star">*</span></label>
+                <input type="tel" id="p-cell" data-req data-validate="phone" inputmode="tel" autocomplete="tel" placeholder="(510) 555-1234" maxlength="14">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="p-work">Teléfono del trabajo</label>
+                <input type="tel" id="p-work" data-validate="phone" inputmode="tel" autocomplete="off" maxlength="14">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+            <div class="pf-row c2">
+              <div class="field">
+                <label for="p-email">Correo electrónico</label>
+                <input type="email" id="p-email" data-validate="email" inputmode="email" autocomplete="email" maxlength="80">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="p-occupation">Ocupación</label>
+                <input type="text" id="p-occupation" autocomplete="organization-title" maxlength="40">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="p-ssn4">Últimos 4 dígitos del Seguro Social <span class="field-hint">(opcional — nunca pedimos el número completo por internet)</span></label>
+              <input type="text" id="p-ssn4" data-validate="ssn4" inputmode="numeric" autocomplete="off" maxlength="4" style="max-width:9rem">
+              <span class="error-msg"></span>
+            </div>
+          </section>
+
+          <!-- 2. Insurance -->
+          <section class="pf-sec" aria-labelledby="sec-ins">
+            <h2 id="sec-ins"><span class="pf-num">2</span> Aseguranza</h2>
+            <span class="pf-sig-label" id="lbl-ins">¿Qué aseguranza tiene? <span class="pf-star">*</span></span>
+            <p class="pf-hint">Marque todas las que tenga.</p>
+            <div class="pf-chips" aria-labelledby="lbl-ins" data-req-group="ins">
+              <label class="pf-chip"><input type="checkbox" name="ins" value="medical"> Medi-Cal (Alameda Alliance)</label>
+              <label class="pf-chip"><input type="checkbox" name="ins" value="medicare"> Medicare</label>
+              <label class="pf-chip"><input type="checkbox" name="ins" value="vsp"> VSP</label>
+              <label class="pf-chip"><input type="checkbox" name="ins" value="eyemed"> EyeMed</label>
+              <label class="pf-chip"><input type="checkbox" name="ins" value="other"> Otra</label>
+              <label class="pf-chip none-chip"><input type="checkbox" name="ins" value="none" data-exclusive> No tengo aseguranza</label>
+            </div>
+            <p class="pf-chips-err">Por favor elija al menos una.</p>
+
+            <div class="pf-when pf-sub" data-when="ins:medical">
+              <div class="field">
+                <label for="ins-medical">CIN de Medi-Cal <span class="field-hint">(8 números y una letra, en su tarjeta)</span></label>
+                <input type="text" id="ins-medical" data-validate="cin" autocomplete="off" maxlength="16" placeholder="ej. 91234567A">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+            <div class="pf-when pf-sub" data-when="ins:medicare">
+              <div class="field">
+                <label for="ins-medicare">Número de Medicare <span class="field-hint">(11 caracteres en su tarjeta roja, blanca y azul)</span></label>
+                <input type="text" id="ins-medicare" data-validate="mbi" autocomplete="off" maxlength="13" placeholder="ej. 1EG4-TE5-MK72">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+            <div class="pf-when pf-sub" data-when="ins:vsp">
+              <div class="field">
+                <label for="ins-vsp">Número de miembro de VSP <span class="field-hint">(si lo tiene)</span></label>
+                <input type="text" id="ins-vsp" data-validate="memberid" autocomplete="off" maxlength="20">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+            <div class="pf-when pf-sub" data-when="ins:eyemed">
+              <div class="field">
+                <label for="ins-eyemed">Número de miembro de EyeMed <span class="field-hint">(si lo tiene)</span></label>
+                <input type="text" id="ins-eyemed" data-validate="memberid" autocomplete="off" maxlength="20">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+            <div class="pf-when pf-sub" data-when="ins:other">
+              <div class="pf-row c2">
+                <div class="field">
+                  <label for="ins-other-name">Nombre de la aseguranza <span class="pf-star">*</span></label>
+                  <input type="text" id="ins-other-name" data-req autocomplete="off" maxlength="40">
+                  <span class="error-msg"></span>
+                </div>
+                <div class="field">
+                  <label for="ins-other-id">Número de miembro</label>
+                  <input type="text" id="ins-other-id" data-validate="memberid" autocomplete="off" maxlength="20">
+                  <span class="error-msg"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pf-when" data-when="ins:vsp,eyemed,other">
+              <span class="pf-sig-label" id="lbl-holder">¿Quién es el titular de la póliza? <span class="pf-star">*</span></span>
+              <p class="pf-hint">La persona por cuyo trabajo o plan viene la aseguranza.</p>
+              <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-holder" data-req-group="holder">
+                <label class="pf-chip"><input type="radio" name="holder" value="self"> Yo</label>
+                <label class="pf-chip"><input type="radio" name="holder" value="other"> Otra persona</label>
+              </div>
+              <p class="pf-chips-err">Por favor elija una opción.</p>
+              <div class="pf-when pf-sub" data-when="holder:other">
+                <div class="pf-row c2">
+                  <div class="field">
+                    <label for="h-name">Nombre completo del titular <span class="pf-star">*</span></label>
+                    <input type="text" id="h-name" data-req data-validate="name" autocomplete="off" maxlength="60">
+                    <span class="error-msg"></span>
+                  </div>
+                  <div class="field">
+                    <label for="h-dob">Fecha de nacimiento del titular <span class="pf-star">*</span></label>
+                    <input type="text" id="h-dob" data-req data-validate="dob" inputmode="numeric" autocomplete="off" placeholder="MM/DD/AAAA" maxlength="10">
+                    <span class="error-msg"></span>
+                  </div>
+                </div>
+                <div class="pf-row c2">
+                  <div class="field">
+                    <label for="h-rel">Su relación con usted <span class="pf-star">*</span></label>
+                    <select id="h-rel" data-req>
+                      <option value="">Elija…</option>
+                      <option value="Spouse">Esposo(a) / pareja</option>
+                      <option value="Parent">Padre / madre</option>
+                      <option value="Other">Otro</option>
+                    </select>
+                    <span class="error-msg"></span>
+                  </div>
+                  <div class="field">
+                    <label for="h-id">Su número de miembro o últimos 4 del Seguro Social</label>
+                    <input type="text" id="h-id" data-validate="memberid" autocomplete="off" maxlength="20">
+                    <span class="error-msg"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 3. Emergency contact -->
+          <section class="pf-sec" aria-labelledby="sec-em">
+            <h2 id="sec-em"><span class="pf-num">3</span> Contacto de emergencia</h2>
+            <div class="pf-row c3">
+              <div class="field">
+                <label for="e-name">Nombre</label>
+                <input type="text" id="e-name" data-validate="name" autocomplete="off" maxlength="60">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="e-phone">Teléfono</label>
+                <input type="tel" id="e-phone" data-validate="phone" inputmode="tel" autocomplete="off" maxlength="14">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="e-rel">Relación</label>
+                <input type="text" id="e-rel" autocomplete="off" maxlength="30" placeholder="ej. hija">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+          </section>
+
+          <!-- 4. Acknowledgement + signature -->
+          <section class="pf-sec" aria-labelledby="sec-sign">
+            <h2 id="sec-sign"><span class="pf-num">4</span> Acuse de recibo y firma</h2>
+
+            <div class="pf-ack" id="pf-ack-text">
+              <p>He revisado el Aviso de Prácticas de Privacidad de HIPAA, se me ha dado la oportunidad de hablar sobre mi derecho a la privacidad y sé que, si lo pido, me darán una copia del aviso. Certifico que la información de arriba es correcta según mi leal saber y entender. Autorizo a mi aseguranza a pagarle directamente a Fruitvale Optometry por los servicios que reciba aquí. Entiendo que la descripción de los beneficios de mi aseguranza no garantiza el pago, y acepto la responsabilidad de todos los cobros que mi aseguranza no cubra, más cualquier cargo necesario para cobrar deudas pendientes.</p>
+            </div>
+            <p style="margin:0 0 1rem"><a href="aviso-de-privacidad.html" target="_blank" rel="noopener">Lea nuestro Aviso de Prácticas de Privacidad</a> <span class="field-hint">(se abre en otra pestaña — sus respuestas aquí no se pierden)</span></p>
+
+            <span class="pf-sig-label" id="lbl-signer">¿Quién firma? <span class="pf-star">*</span></span>
+            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-signer" data-req-group="signer">
+              <label class="pf-chip"><input type="radio" name="signer" value="patient"> Yo soy el paciente</label>
+              <label class="pf-chip"><input type="radio" name="signer" value="guardian"> Padre, madre o tutor (el paciente es menor)</label>
+            </div>
+            <p class="pf-chips-err">Por favor elija una opción.</p>
+            <div class="pf-when pf-sub" data-when="signer:guardian">
+              <div class="pf-row c2">
+                <div class="field">
+                  <label for="g-name">Su nombre completo <span class="pf-star">*</span></label>
+                  <input type="text" id="g-name" data-req data-validate="name" autocomplete="name" maxlength="60">
+                  <span class="error-msg"></span>
+                </div>
+                <div class="field">
+                  <label for="g-rel">Relación con el paciente <span class="pf-star">*</span></label>
+                  <input type="text" id="g-rel" data-req autocomplete="off" maxlength="30" placeholder="ej. madre">
+                  <span class="error-msg"></span>
+                </div>
+              </div>
+            </div>
+
+            <label class="pf-agree" id="pf-agree-label"><input type="checkbox" id="pf-agree"> Leí el acuse de arriba y estoy de acuerdo. <span class="pf-star">*</span></label>
+
+            <span class="pf-sig-label" id="lbl-sig">Firme aquí con el dedo <span class="pf-star">*</span></span>
+            <div class="pf-sig-wrap" id="pf-sig-wrap">
+              <span class="pf-sig-x" aria-hidden="true">✕</span>
+              <span class="pf-sig-line" aria-hidden="true"></span>
+              <span class="pf-sig-ph" aria-hidden="true">Firme aquí</span>
+              <canvas id="pf-sig" role="img" aria-labelledby="lbl-sig"></canvas>
+            </div>
+            <p class="pf-sig-err">Por favor firme en el recuadro.</p>
+            <div class="pf-sig-bar">
+              <span>Fecha: <strong id="pf-today"></strong></span>
+              <button type="button" class="pf-sig-clear" id="pf-sig-clear">Borrar firma</button>
+            </div>
+          </section>
+
+          <div class="gate-actions">
+            <div class="pf-summary" id="pf-summary" role="alert"></div>
+            <button type="submit" class="btn btn-primary gate-submit" id="pf-submit">Enviar mi formulario</button>
+            <p class="pf-privacy-note">Sus respuestas van directo a los archivos seguros de Fruitvale Optometry, protegidos por HIPAA. No se guarda nada en este teléfono.</p>
+            <p class="gate-call-fallback">¿Preguntas? <a href="tel:+15105336567"><strong>Llame al (510) 533-6567</strong></a> o pregunte en la recepción.</p>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- confirmation popup -->
+<div class="gate-modal-backdrop" id="pf-modal" role="dialog" aria-modal="true" aria-labelledby="pf-modal-title">
+  <div class="gate-modal">
+    <div class="modal-icon" aria-hidden="true">✓</div>
+    <h2 id="pf-modal-title">¡Gracias — su formulario fue enviado!</h2>
+    <p>Avísele a la recepción que ya terminó. Si se lo piden, su código de confirmación es:</p>
+    <div class="pf-ref" id="pf-ref"></div>
+    <button type="button" class="btn btn-primary" id="pf-done">Listo</button>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© Fruitvale Optometry · 3301 East 12th Street #109, Oakland, CA 94601 · (510) 533-6567</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/patient-form.js?v=1"></script>
+
+</body>
+</html>

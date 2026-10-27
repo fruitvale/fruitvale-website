@@ -1,0 +1,278 @@
+/* ==========================================================================
+   Online "Patient Information" (HIPAA) form
+   patient-form.html / es/formulario-paciente.html. Loaded AFTER style.css and
+   reuses its tokens + .gate-card / .field / .btn rules.
+   ========================================================================== */
+
+.pf-card { max-width: 720px; }
+
+.pf-lang-banner {
+  display: block;
+  margin: 0 0 1.25rem;
+  padding: .8rem 1rem;
+  border-radius: 10px;
+  background: var(--amber-100);
+  border: 1px solid #f3d38f;
+  color: var(--ink);
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.05rem;
+}
+.pf-lang-banner:hover { background: #fbe6b9; color: var(--ink); }
+
+.pf-req-note { margin: -.6rem 0 1.4rem; font-size: .95rem; color: var(--ink-soft); }
+.pf-star { color: #a5281b; font-weight: 800; }
+
+/* each numbered section */
+.pf-sec {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-warm);
+  padding: 1.1rem 1.1rem 1.25rem;
+  margin: 0 0 1.25rem;
+}
+@media (min-width: 640px) { .pf-sec { padding: 1.3rem 1.4rem 1.45rem; } }
+.pf-sec > h2 {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+  color: var(--teal-900);
+}
+.pf-num {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--teal-700);
+  color: #fff;
+  font-size: .95rem;
+  font-weight: 800;
+}
+.pf-sec h3 {
+  margin: 1.2rem 0 .55rem;
+  font-size: 1.02rem;
+  color: var(--teal-900);
+}
+.pf-sec h3:first-of-type { margin-top: .2rem; }
+.pf-hint { margin: -.3rem 0 .7rem; font-size: .92rem; color: var(--ink-soft); }
+
+/* grid rows of fields */
+.pf-row { display: grid; gap: 0 .9rem; grid-template-columns: 1fr; }
+@media (min-width: 520px) {
+  .pf-row.c2 { grid-template-columns: 1fr 1fr; }
+  .pf-row.c3 { grid-template-columns: 1fr 1fr 1fr; }
+  .pf-row.name { grid-template-columns: 1fr 1fr 5.5rem; }
+  .pf-row.addr { grid-template-columns: 1fr 7rem; }
+  .pf-row.city { grid-template-columns: 1fr 5rem 8rem; }
+}
+.pf-row .field { margin-bottom: 1rem; }
+
+.field textarea,
+.field select {
+  width: 100%;
+  font-size: 1.1rem;
+  padding: .7rem .8rem;
+  min-height: 50px;
+  border: 2px solid var(--line);
+  border-radius: 9px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: inherit;
+}
+.field textarea { min-height: 84px; resize: vertical; }
+.field textarea:focus-visible,
+.field select:focus-visible { outline: 3px solid var(--amber-500); outline-offset: 1px; }
+.field textarea.invalid { border-color: #c0392b; background: #fdf3f2; }
+
+/* tappable chips (checkbox / radio) */
+.pf-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 0 0 1rem;
+}
+.pf-chips.errored { outline: 2px solid #c0392b; outline-offset: 4px; border-radius: 10px; }
+.pf-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  min-height: 48px;
+  padding: .55rem .9rem;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ink);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color .12s ease, background .12s ease;
+}
+.pf-chip:hover { border-color: var(--teal-600); }
+.pf-chip input {
+  width: 20px; height: 20px;
+  margin: 0;
+  flex: none;
+  accent-color: var(--teal-700);
+  cursor: pointer;
+}
+.pf-chip.checked { border-color: var(--teal-700); background: var(--teal-100); color: var(--teal-900); }
+.pf-chip.none-chip { border-style: dashed; }
+.pf-chips-err {
+  display: none;
+  margin: -.5rem 0 1rem;
+  color: #a5281b;
+  font-size: .92rem;
+  font-weight: 600;
+}
+.pf-chips.errored + .pf-chips-err { display: block; }
+
+/* blocks that only show when a choice is made (data-when) */
+.pf-when { display: none; }
+.pf-when.show { display: block; }
+.pf-sub {
+  border-left: 4px solid var(--teal-600);
+  border-radius: 8px;
+  background: var(--paper);
+  padding: .9rem 1rem .2rem;
+  margin: -.2rem 0 1rem;
+}
+.pf-sub > h3 { margin-top: 0; }
+
+/* acknowledgement + signature */
+.pf-ack {
+  margin: 0 0 1rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--amber-500);
+  border-radius: 8px;
+  background: var(--paper);
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+.pf-ack p { margin: 0 0 .6rem; }
+.pf-ack p:last-child { margin-bottom: 0; }
+.pf-agree {
+  display: flex;
+  align-items: flex-start;
+  gap: .7rem;
+  margin: 0 0 1.1rem;
+  padding: .85rem 1rem;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  font-weight: 700;
+  cursor: pointer;
+}
+.pf-agree input { width: 24px; height: 24px; flex: none; margin-top: .1rem; accent-color: var(--teal-700); }
+.pf-agree.checked { border-color: var(--teal-700); background: var(--teal-100); }
+.pf-agree.errored { border-color: #c0392b; background: #fdf3f2; }
+
+.pf-sig-label { display: block; font-weight: 700; margin: 0 0 .35rem; }
+.pf-sig-wrap {
+  position: relative;
+  border: 2px dashed var(--teal-600);
+  border-radius: 12px;
+  background: #fff;
+  aspect-ratio: 2 / 1;            /* keep in step with VW/VH in patient-form.js */
+  width: 100%;
+  touch-action: none;
+}
+.pf-sig-wrap.errored { border-color: #c0392b; background: #fdf3f2; }
+.pf-sig-wrap canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  touch-action: none;
+  cursor: crosshair;
+}
+.pf-sig-line {
+  position: absolute;
+  left: 6%; right: 6%; bottom: 24%;
+  border-bottom: 2px solid #c9d6d8;
+  pointer-events: none;
+}
+.pf-sig-x {
+  position: absolute;
+  left: 3%; bottom: 25%;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #9db0b3;
+  pointer-events: none;
+}
+.pf-sig-ph {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #8fa3a6;
+  font-size: 1.05rem;
+  pointer-events: none;
+}
+.pf-sig-wrap.has-ink .pf-sig-ph { display: none; }
+.pf-sig-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .8rem;
+  margin: .45rem 0 1rem;
+  font-size: .95rem;
+  color: var(--ink-soft);
+}
+.pf-sig-clear {
+  border: 2px solid var(--line);
+  background: var(--paper);
+  border-radius: 9px;
+  padding: .45rem .9rem;
+  font-weight: 700;
+  font-size: .95rem;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--ink);
+}
+.pf-sig-clear:hover { border-color: var(--teal-600); }
+.pf-sig-err { display: none; margin: -.6rem 0 1rem; color: #a5281b; font-size: .92rem; font-weight: 600; }
+.pf-sig-wrap.errored ~ .pf-sig-err { display: block; }
+
+.pf-summary {
+  display: none;
+  margin: 0 0 1rem;
+  padding: .8rem 1rem;
+  border-radius: 10px;
+  background: #fdf3f2;
+  border: 1px solid #e6b3ad;
+  color: #8e2316;
+  font-weight: 700;
+}
+.pf-summary.show { display: block; }
+
+.pf-privacy-note {
+  margin: 1rem 0 0;
+  font-size: .9rem;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.pf-ref {
+  display: inline-block;
+  margin: .2rem 0 1.2rem;
+  padding: .5rem 1rem;
+  border-radius: 10px;
+  background: var(--teal-50);
+  border: 2px solid var(--teal-600);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  color: var(--teal-900);
+}
+
+/* the privacy notice pages */
+.notice-doc { max-width: 760px; margin: 0 auto; line-height: 1.6; }
+.notice-doc h1 { color: var(--teal-900); }
+.notice-doc h2 { color: var(--teal-900); font-size: 1.2rem; margin: 1.6rem 0 .5rem; }
+.notice-doc .notice-meta { color: var(--ink-soft); }
