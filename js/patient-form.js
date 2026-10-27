@@ -100,6 +100,10 @@
     var el = form.querySelector('input[name="' + name + '"]');
     return el && isActive(el) ? radioVal(name) : "";
   }
+  function shownChecked(name) {
+    var el = form.querySelector('input[name="' + name + '"]');
+    return el && isActive(el) ? checkedVals(name) : [];
+  }
   function digits(s) { return String(s || "").replace(/\D/g, ""); }
   function pad2(n) { return (n < 10 ? "0" : "") + n; }
 
@@ -147,13 +151,17 @@
   });
 
   // ---- show/hide blocks: data-when="name:value[,value...]" -----------------
+  // "name:!value" = shown UNLESS that value is picked (also while nothing is) --
+  // the health questions hide for a "New glasses" visit (user 10/27/2026)
   var whens = Array.prototype.slice.call(form.querySelectorAll("[data-when]"));
   function refreshWhen() {
     whens.forEach(function (el) {
       var spec = el.getAttribute("data-when").split(":");
       var picked = checkedVals(spec[0]);
-      var want = (spec[1] || "").split(",");
-      var on = want.some(function (w) { return picked.indexOf(w) !== -1; });
+      var not = (spec[1] || "").charAt(0) === "!";
+      var want = (spec[1] || "").replace(/^!/, "").split(",");
+      var hit = want.some(function (w) { return picked.indexOf(w) !== -1; });
+      var on = not ? !hit : hit;
       if (el.classList.contains("show") !== on) dbg("block", el.getAttribute("data-when"), on ? "shown" : "hidden");
       el.classList.toggle("show", on);
     });
@@ -444,13 +452,14 @@
         eye: shownRadio("h-eye"), howLong: shownVal("h-howlong"), problem: shownVal("h-problem"),
         lastExam: radioVal("h-lastexam"),
         wear: checkedVals("h-wear"), wantsContacts: checkedVals("h-clint").length > 0,
-        meds: radioVal("h-meds"), medsList: shownVal("h-meds-list"),
-        allergies: radioVal("h-allergy"), allergyList: shownVal("h-allergy-list"),
-        conditions: checkedVals("h-cond"), diabetesYear: shownVal("h-dm-year"), insulin: shownRadio("h-insulin"),
-        otherHealth: val("h-cond-other"),
-        eyeHistory: checkedVals("h-eyehx"), symptoms: checkedVals("h-sym"), family: checkedVals("h-fam"),
-        smoking: radioVal("h-smoke"), screens: radioVal("h-screen"),
-        pcp: val("h-pcp"), heard: radioVal("h-heard")
+        // the medical questions are hidden for a "New glasses" visit -> left out then
+        meds: shownRadio("h-meds"), medsList: shownVal("h-meds-list"),
+        allergies: shownRadio("h-allergy"), allergyList: shownVal("h-allergy-list"),
+        conditions: shownChecked("h-cond"), diabetesYear: shownVal("h-dm-year"), insulin: shownRadio("h-insulin"),
+        otherHealth: shownVal("h-cond-other"),
+        eyeHistory: shownChecked("h-eyehx"), symptoms: shownChecked("h-sym"), family: shownChecked("h-fam"),
+        smoking: shownRadio("h-smoke"), screens: radioVal("h-screen"),
+        pcp: shownVal("h-pcp"), heard: radioVal("h-heard")
       },
       // The visit + health-history questions of the full paper sheet are left
       // out for now (user 10/27/2026: "just have the patient info part").

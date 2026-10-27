@@ -199,7 +199,9 @@
               <label class="pf-chip"><input type="checkbox" name="h-clint" value="yes"> Me gustaría probar lentes de contacto</label>
             </div>
 
-            <h3 id="lbl-meds">¿Toma alguna medicina? <span class="field-hint">(también gotas para los ojos)</span></h3>
+            <!-- the medical questions: hidden for a "New glasses" visit (user 10/27/2026) -->
+            <div class="pf-when" data-when="h-reason:!glasses">
+            <h3 id="lbl-meds" style="margin-top:1.2rem">¿Toma alguna medicina? <span class="field-hint">(también gotas para los ojos)</span></h3>
             <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-meds">
               <label class="pf-chip"><input type="radio" name="h-meds" value="none"> No</label>
               <label class="pf-chip"><input type="radio" name="h-meds" value="yes"> Sí</label>
@@ -299,17 +301,18 @@
               <label class="pf-chip"><input type="radio" name="h-smoke" value="yes"> Sí</label>
             </div>
 
+            <div class="field">
+              <label for="h-pcp">Su doctor de cabecera <span class="field-hint">(nombre o clínica)</span></label>
+              <input type="text" id="h-pcp" autocomplete="off" maxlength="60">
+              <span class="error-msg"></span>
+            </div>
+            </div><!-- /medical questions -->
+
             <h3 id="lbl-screen">Tiempo frente a pantallas al día <span class="field-hint">(celular, computadora, TV)</span></h3>
             <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-screen">
               <label class="pf-chip"><input type="radio" name="h-screen" value="lt2"> Menos de 2 horas</label>
               <label class="pf-chip"><input type="radio" name="h-screen" value="2-6"> 2–6 horas</label>
               <label class="pf-chip"><input type="radio" name="h-screen" value="6plus"> 6 horas o más</label>
-            </div>
-
-            <div class="field">
-              <label for="h-pcp">Su doctor de cabecera <span class="field-hint">(nombre o clínica)</span></label>
-              <input type="text" id="h-pcp" autocomplete="off" maxlength="60">
-              <span class="error-msg"></span>
             </div>
 
             <h3 id="lbl-heard">¿Cómo supo de nosotros?</h3>
@@ -399,7 +402,7 @@
   </div>
 </footer>
 
-<script src="../js/patient-form.js?v=5"></script>
+<script src="../js/patient-form.js?v=6"></script>
 
 </body>
 </html>
