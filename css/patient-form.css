@@ -258,19 +258,6 @@
   text-align: center;
 }
 
-.pf-ref {
-  display: inline-block;
-  margin: .2rem 0 1.2rem;
-  padding: .5rem 1rem;
-  border-radius: 10px;
-  background: var(--teal-50);
-  border: 2px solid var(--teal-600);
-  font-size: 1.6rem;
-  font-weight: 800;
-  letter-spacing: .12em;
-  color: var(--teal-900);
-}
-
 /* the privacy notice pages */
 .notice-doc { max-width: 760px; margin: 0 auto; line-height: 1.6; }
 .notice-doc h1 { color: var(--teal-900); }

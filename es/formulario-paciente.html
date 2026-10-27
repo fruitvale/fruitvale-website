@@ -11,7 +11,7 @@
 <meta name="description" content="Llene su información de paciente y el acuse de privacidad de Fruitvale Optometry antes de su visita.">
 <link rel="alternate" hreflang="en" href="https://www.fruitvaleoptometry.com/patient-form.html">
 <link rel="stylesheet" href="../css/style.css?v=4">
-<link rel="stylesheet" href="../css/patient-form.css?v=1">
+<link rel="stylesheet" href="../css/patient-form.css?v=2">
 </head>
 <body>
 
@@ -148,109 +148,9 @@
             </div>
           </section>
 
-          <!-- 2. Insurance -->
-          <section class="pf-sec" aria-labelledby="sec-ins">
-            <h2 id="sec-ins"><span class="pf-num">2</span> Aseguranza</h2>
-            <span class="pf-sig-label" id="lbl-ins">¿Qué aseguranza tiene? <span class="pf-star">*</span></span>
-            <p class="pf-hint">Marque todas las que tenga.</p>
-            <div class="pf-chips" aria-labelledby="lbl-ins" data-req-group="ins">
-              <label class="pf-chip"><input type="checkbox" name="ins" value="medical"> Medi-Cal (Alameda Alliance)</label>
-              <label class="pf-chip"><input type="checkbox" name="ins" value="medicare"> Medicare</label>
-              <label class="pf-chip"><input type="checkbox" name="ins" value="vsp"> VSP</label>
-              <label class="pf-chip"><input type="checkbox" name="ins" value="eyemed"> EyeMed</label>
-              <label class="pf-chip"><input type="checkbox" name="ins" value="other"> Otra</label>
-              <label class="pf-chip none-chip"><input type="checkbox" name="ins" value="none" data-exclusive> No tengo aseguranza</label>
-            </div>
-            <p class="pf-chips-err">Por favor elija al menos una.</p>
-
-            <div class="pf-when pf-sub" data-when="ins:medical">
-              <div class="field">
-                <label for="ins-medical">CIN de Medi-Cal <span class="field-hint">(8 números y una letra, en su tarjeta)</span></label>
-                <input type="text" id="ins-medical" data-validate="cin" autocomplete="off" maxlength="16" placeholder="ej. 91234567A">
-                <span class="error-msg"></span>
-              </div>
-            </div>
-            <div class="pf-when pf-sub" data-when="ins:medicare">
-              <div class="field">
-                <label for="ins-medicare">Número de Medicare <span class="field-hint">(11 caracteres en su tarjeta roja, blanca y azul)</span></label>
-                <input type="text" id="ins-medicare" data-validate="mbi" autocomplete="off" maxlength="13" placeholder="ej. 1EG4-TE5-MK72">
-                <span class="error-msg"></span>
-              </div>
-            </div>
-            <div class="pf-when pf-sub" data-when="ins:vsp">
-              <div class="field">
-                <label for="ins-vsp">Número de miembro de VSP <span class="field-hint">(si lo tiene)</span></label>
-                <input type="text" id="ins-vsp" data-validate="memberid" autocomplete="off" maxlength="20">
-                <span class="error-msg"></span>
-              </div>
-            </div>
-            <div class="pf-when pf-sub" data-when="ins:eyemed">
-              <div class="field">
-                <label for="ins-eyemed">Número de miembro de EyeMed <span class="field-hint">(si lo tiene)</span></label>
-                <input type="text" id="ins-eyemed" data-validate="memberid" autocomplete="off" maxlength="20">
-                <span class="error-msg"></span>
-              </div>
-            </div>
-            <div class="pf-when pf-sub" data-when="ins:other">
-              <div class="pf-row c2">
-                <div class="field">
-                  <label for="ins-other-name">Nombre de la aseguranza <span class="pf-star">*</span></label>
-                  <input type="text" id="ins-other-name" data-req autocomplete="off" maxlength="40">
-                  <span class="error-msg"></span>
-                </div>
-                <div class="field">
-                  <label for="ins-other-id">Número de miembro</label>
-                  <input type="text" id="ins-other-id" data-validate="memberid" autocomplete="off" maxlength="20">
-                  <span class="error-msg"></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="pf-when" data-when="ins:vsp,eyemed,other">
-              <span class="pf-sig-label" id="lbl-holder">¿Quién es el titular de la póliza? <span class="pf-star">*</span></span>
-              <p class="pf-hint">La persona por cuyo trabajo o plan viene la aseguranza.</p>
-              <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-holder" data-req-group="holder">
-                <label class="pf-chip"><input type="radio" name="holder" value="self"> Yo</label>
-                <label class="pf-chip"><input type="radio" name="holder" value="other"> Otra persona</label>
-              </div>
-              <p class="pf-chips-err">Por favor elija una opción.</p>
-              <div class="pf-when pf-sub" data-when="holder:other">
-                <div class="pf-row c2">
-                  <div class="field">
-                    <label for="h-name">Nombre completo del titular <span class="pf-star">*</span></label>
-                    <input type="text" id="h-name" data-req data-validate="name" autocomplete="off" maxlength="60">
-                    <span class="error-msg"></span>
-                  </div>
-                  <div class="field">
-                    <label for="h-dob">Fecha de nacimiento del titular <span class="pf-star">*</span></label>
-                    <input type="text" id="h-dob" data-req data-validate="dob" inputmode="numeric" autocomplete="off" placeholder="MM/DD/AAAA" maxlength="10">
-                    <span class="error-msg"></span>
-                  </div>
-                </div>
-                <div class="pf-row c2">
-                  <div class="field">
-                    <label for="h-rel">Su relación con usted <span class="pf-star">*</span></label>
-                    <select id="h-rel" data-req>
-                      <option value="">Elija…</option>
-                      <option value="Spouse">Esposo(a) / pareja</option>
-                      <option value="Parent">Padre / madre</option>
-                      <option value="Other">Otro</option>
-                    </select>
-                    <span class="error-msg"></span>
-                  </div>
-                  <div class="field">
-                    <label for="h-id">Su número de miembro o últimos 4 del Seguro Social</label>
-                    <input type="text" id="h-id" data-validate="memberid" autocomplete="off" maxlength="20">
-                    <span class="error-msg"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- 3. Emergency contact -->
+          <!-- 2. Emergency contact -->
           <section class="pf-sec" aria-labelledby="sec-em">
-            <h2 id="sec-em"><span class="pf-num">3</span> Contacto de emergencia</h2>
+            <h2 id="sec-em"><span class="pf-num">2</span> Contacto de emergencia</h2>
             <div class="pf-row c3">
               <div class="field">
                 <label for="e-name">Nombre</label>
@@ -270,9 +170,9 @@
             </div>
           </section>
 
-          <!-- 4. Acknowledgement + signature -->
+          <!-- 3. Acknowledgement + signature -->
           <section class="pf-sec" aria-labelledby="sec-sign">
-            <h2 id="sec-sign"><span class="pf-num">4</span> Acuse de recibo y firma</h2>
+            <h2 id="sec-sign"><span class="pf-num">3</span> Acuse de recibo y firma</h2>
 
             <div class="pf-ack" id="pf-ack-text">
               <p>He revisado el Aviso de Prácticas de Privacidad de HIPAA, se me ha dado la oportunidad de hablar sobre mi derecho a la privacidad y sé que, si lo pido, me darán una copia del aviso. Certifico que la información de arriba es correcta según mi leal saber y entender. Autorizo a mi aseguranza a pagarle directamente a Fruitvale Optometry por los servicios que reciba aquí. Entiendo que la descripción de los beneficios de mi aseguranza no garantiza el pago, y acepto la responsabilidad de todos los cobros que mi aseguranza no cubra, más cualquier cargo necesario para cobrar deudas pendientes.</p>
@@ -334,8 +234,7 @@
   <div class="gate-modal">
     <div class="modal-icon" aria-hidden="true">✓</div>
     <h2 id="pf-modal-title">¡Gracias — su formulario fue enviado!</h2>
-    <p>Avísele a la recepción que ya terminó. Si se lo piden, su código de confirmación es:</p>
-    <div class="pf-ref" id="pf-ref"></div>
+    <p>Avísele a la recepción que ya terminó.</p>
     <button type="button" class="btn btn-primary" id="pf-done">Listo</button>
   </div>
 </div>
@@ -348,7 +247,7 @@
   </div>
 </footer>
 
-<script src="../js/patient-form.js?v=1"></script>
+<script src="../js/patient-form.js?v=2"></script>
 
 </body>
 </html>

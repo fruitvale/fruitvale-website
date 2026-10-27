@@ -45,9 +45,6 @@
       phone: "Enter a 10-digit phone number.",
       email: "That email doesn't look right.",
       ssn4: "Enter exactly 4 digits.",
-      cin: "A CIN is 8 numbers and a letter, like 91234567A.",
-      mbi: "Enter the 11-character Medicare number, like 1EG4-TE5-MK72.",
-      memberid: "Use letters and numbers only.",
       year: "Enter a 4-digit year.",
       mi: "One letter.",
       agree: "Please check the box to agree.",
@@ -69,9 +66,6 @@
       phone: "Escriba un teléfono de 10 dígitos.",
       email: "Ese correo no parece correcto.",
       ssn4: "Escriba exactamente 4 dígitos.",
-      cin: "El CIN son 8 números y una letra, como 91234567A.",
-      mbi: "Escriba el número de Medicare de 11 caracteres, como 1EG4-TE5-MK72.",
-      memberid: "Use solo letras y números.",
       year: "Escriba un año de 4 dígitos.",
       mi: "Una letra.",
       agree: "Marque la casilla para aceptar.",
@@ -184,7 +178,7 @@
       else if (kind === "name" || kind === "mi") {
         var clean = inp.value.replace(NAME_BLOCK, "");
         if (clean !== inp.value) inp.value = clean;
-      } else if (kind === "state" || kind === "cin" || kind === "mbi") {
+      } else if (kind === "state") {
         var up = inp.value.toUpperCase();
         if (up !== inp.value) inp.value = up;
       } else if (kind === "zip" || kind === "ssn4" || kind === "year") {
@@ -197,9 +191,6 @@
 
   // ---- validation -----------------------------------------------------------
   var RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  var RE_CIN = /^\d{8}[A-Z]\d{0,5}$/;
-  var RE_MBI = /^[0-9A-Z]{4}-?[0-9A-Z]{3}-?[0-9A-Z]{4}$/;
-  var RE_MEMBER = /^[A-Za-z0-9\- ]{2,20}$/;
 
   function checkDate(raw) {
     var m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(raw);
@@ -226,9 +217,6 @@
       case "phone": return digits(raw).length === 10 ? "" : T.phone;
       case "email": return RE_EMAIL.test(raw) ? "" : T.email;
       case "ssn4":  return /^\d{4}$/.test(raw) ? "" : T.ssn4;
-      case "cin":   return RE_CIN.test(raw.replace(/\s/g, "")) ? "" : T.cin;
-      case "mbi":   return RE_MBI.test(raw.replace(/\s/g, "")) ? "" : T.mbi;
-      case "memberid": return RE_MEMBER.test(raw) ? "" : T.memberid;
       case "year":  return (/^\d{4}$/.test(raw) && +raw <= new Date().getFullYear() && +raw > 1900) ? "" : T.year;
     }
     return "";
@@ -389,9 +377,10 @@
   })();
   $("pf-sig-clear").addEventListener("click", function () { sig.clear(); });
 
-  // ---- confirmation code ----------------------------------------------------
-  // Random, no patient information in it. The office tool shows it next to the
-  // submission so staff can find "the one with code K7Q2MX" if they need to.
+  // ---- submission id --------------------------------------------------------
+  // Random, no patient information in it, and never shown to the patient (user
+  // 10/27/2026: no confirmation code). The office tool uses it to tell
+  // submissions apart and to remember which ones were filed in Crystal.
   var CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";   // no 0/O or 1/I
   function newCode() {
     var out = "", n = 6, i, buf;
@@ -415,9 +404,6 @@
   // ---- the payload ------------------------------------------------------------
   // Keep the shape in sync with tools\patient_forms.py (it renders the PDF).
   function buildPayload(code, step) {
-    var ins = checkedVals("ins");
-    var holderOn = ins.some(function (c) { return c === "vsp" || c === "eyemed" || c === "other"; });
-    var holder = holderOn ? radioVal("holder") : "";
     var signer = radioVal("signer");
     var p = {
       v: 1,
@@ -434,20 +420,8 @@
         cell: val("p-cell"), work: val("p-work"), email: val("p-email"),
         occupation: val("p-occupation"), ssn4: val("p-ssn4")
       },
-      ins: {
-        carriers: ins,
-        medical: ins.indexOf("medical") !== -1 ? val("ins-medical").replace(/\s/g, "").toUpperCase() : "",
-        medicare: ins.indexOf("medicare") !== -1 ? val("ins-medicare").replace(/\s/g, "").toUpperCase() : "",
-        vsp: ins.indexOf("vsp") !== -1 ? val("ins-vsp") : "",
-        eyemed: ins.indexOf("eyemed") !== -1 ? val("ins-eyemed") : "",
-        otherName: ins.indexOf("other") !== -1 ? val("ins-other-name") : "",
-        otherId: ins.indexOf("other") !== -1 ? val("ins-other-id") : "",
-        holder: holder,
-        holderName: holder === "other" ? val("h-name") : "",
-        holderDob: holder === "other" ? val("h-dob") : "",
-        holderRel: holder === "other" ? val("h-rel") : "",
-        holderId: holder === "other" ? val("h-id") : ""
-      },
+      // No insurance section any more (user 10/27/2026: "get rid of ... the
+      // insurance part") -- the front desk gets that from the card at check-in.
       emergency: { name: val("e-name"), phone: val("e-phone"), rel: val("e-rel") },
       // The visit + health-history questions of the full paper sheet are left
       // out for now (user 10/27/2026: "just have the patient info part").
@@ -524,7 +498,6 @@
     post(json).then(function () {
       dbg("posted OK in", Date.now() - t0, "ms");
       sent = true;
-      $("pf-ref").textContent = code;
       modal.classList.add("open");
       $("pf-done").focus();
     }, function (err) {
