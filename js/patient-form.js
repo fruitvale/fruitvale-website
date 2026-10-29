@@ -459,7 +459,8 @@
         otherHealth: shownVal("h-cond-other"),
         eyeHistory: shownChecked("h-eyehx"), symptoms: shownChecked("h-sym"), family: shownChecked("h-fam"),
         smoking: shownRadio("h-smoke"), screens: radioVal("h-screen"),
-        pcp: shownVal("h-pcp"), heard: radioVal("h-heard")
+        pcp: shownVal("h-pcp")
+        // "How did you hear about us?" taken off 10/29/2026 (user: "get rid of the how did you hear about us thing")
       },
       // The visit + health-history questions of the full paper sheet are left
       // out for now (user 10/27/2026: "just have the patient info part").
