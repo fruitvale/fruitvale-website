@@ -2,6 +2,10 @@
    Fruitvale Optometry — online "Patient Information" (HIPAA) form
    Serves patient-form.html (EN) and es/formulario-paciente.html (ES); the
    language comes from data-lang on #pf-root, labels live in the HTML.
+   Also check-in.html / es/registro.html (11/02/2026): the same form plus the
+   paper "Patient Policies" + "Retinal Photos" sheet (sections 3-5, x-* ids).
+   Everything for those is keyed off #x-pol-text, so the plain form pages
+   send exactly what they always did.
 
    Where the answers go: the whole form is packed into ONE JSON string and
    POSTed straight from the patient's browser to a Google Form (responses land
@@ -162,7 +166,18 @@
       var want = (spec[1] || "").replace(/^!/, "").split(",");
       var hit = want.some(function (w) { return picked.indexOf(w) !== -1; });
       var on = not ? !hit : hit;
-      if (el.classList.contains("show") !== on) dbg("block", el.getAttribute("data-when"), on ? "shown" : "hidden");
+      if (el.classList.contains("show") !== on) {
+        dbg("block", el.getAttribute("data-when"), on ? "shown" : "hidden");
+        // data-prefill="p-cell": an empty box copies that answer when its block
+        // opens (check-in.html: "Cell phone for texts" starts as their cell)
+        if (on) Array.prototype.forEach.call(el.querySelectorAll("[data-prefill]"), function (inp) {
+          var src = $(inp.getAttribute("data-prefill"));
+          if (src && !String(inp.value || "").trim() && String(src.value || "").trim()) {
+            inp.value = src.value;
+            dbg("prefill", inp.id, "from", src.id);
+          }
+        });
+      }
       el.classList.toggle("show", on);
     });
   }
@@ -422,12 +437,40 @@
       pad2(d.getMinutes()) + ":" + pad2(d.getSeconds()) + sgn + pad2(Math.floor(off / 60)) + ":" + pad2(off % 60);
   }
 
+  // ---- check-in.html: office policies / texts / retinal photos -----------------
+  // (user 11/02/2026: "also have the respect policy/auth for texting and the
+  // retinal screening form ... a different url than the current one"). The
+  // words on screen go along -- headings, paragraphs, bullets and both choices
+  // -- so the office PDF shows what was agreed to, in the patient's language.
+  var PACKET = !!$("x-pol-text");
+  function clean(el) { return (el.textContent || "").replace(/\s+/g, " ").replace(/\s*\*$/, "").trim(); }
+  function docBlocks(id) {
+    return Array.prototype.map.call($(id).querySelectorAll("h3, p, li"), function (el) {
+      return [el.tagName.toLowerCase(), clean(el)];
+    });
+  }
+  // [[value, label text], ...] for one tick-one group
+  function choices(name) {
+    return Array.prototype.map.call(form.querySelectorAll('input[name="' + name + '"]'), function (inp) {
+      return [inp.value, clean(inp.closest("label"))];
+    });
+  }
+  function packetPart() {
+    if (!PACKET) return undefined;          // plain form pages: no packet block at all
+    return {
+      policies: { agreed: checkedVals("x-pol").length > 0, words: docBlocks("x-pol-text"), agreeText: choices("x-pol")[0][1] },
+      texts: { ok: radioVal("x-txt"), cell: shownVal("x-txt-cell"), email: shownVal("x-txt-email"),
+               words: docBlocks("x-txt-text"), options: choices("x-txt") },
+      retina: { choice: radioVal("x-ret"), words: docBlocks("x-ret-text"), options: choices("x-ret") }
+    };
+  }
+
   // ---- the payload ------------------------------------------------------------
   // Keep the shape in sync with tools\patient_forms.py (it renders the PDF).
   function buildPayload(code, step) {
     var signer = radioVal("signer");
     var p = {
-      v: 2,                  // 2 = has the health section (10/27/2026)
+      v: PACKET ? 3 : 2,     // 2 = has the health section (10/27/2026), 3 = + the check-in packet (11/02/2026)
       form: "patient-info",
       lang: LANG,
       ref: code,
@@ -462,6 +505,7 @@
         pcp: shownVal("h-pcp")
         // "How did you hear about us?" taken off 10/29/2026 (user: "get rid of the how did you hear about us thing")
       },
+      packet: packetPart(),  // undefined (= left out of the JSON) on the plain form pages
       // The visit + health-history questions of the full paper sheet are left
       // out for now (user 10/27/2026: "just have the patient info part").
       sign: {
@@ -564,5 +608,5 @@
 
   syncChips();
   refreshWhen();
-  dbg("ready: lang", LANG, "| endpoint", FORM_ACTION ? "set" : "MISSING", "| notice", NOTICE_VER);
+  dbg("ready: lang", LANG, "| endpoint", FORM_ACTION ? "set" : "MISSING", "| notice", NOTICE_VER, "| check-in packet", PACKET);
 })();

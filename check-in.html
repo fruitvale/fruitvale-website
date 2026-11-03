@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Check-in Forms — Fruitvale Optometry</title>
+<meta name="description" content="Fill out your Fruitvale Optometry check-in forms: patient information, office policies, text messages and retinal photos.">
+<link rel="alternate" hreflang="es" href="https://www.fruitvaleoptometry.com/es/registro.html">
+<link rel="stylesheet" href="css/style.css?v=4">
+<link rel="stylesheet" href="css/patient-form.css?v=3">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-name">Fruitvale Optometry</span>
+    </a>
+    <a class="lang-switch" href="es/registro.html" lang="es" hreflang="es">Español</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="gate-wrap">
+    <div class="container">
+      <div class="gate-card pf-card"
+           id="pf-root"
+           data-lang="en"
+           data-notice-version="2004-04-01"
+           data-form-action="https://docs.google.com/forms/d/e/1FAIpQLSd7InIOXvM05Q7xXLanUOTsroNgq4LZmCvqgJXtrwlMVxfyWA/formResponse"
+           data-form-entry="entry.970082563">
+
+        <a class="pf-lang-banner" href="es/registro.html" lang="es" hreflang="es">¿Prefiere español? Toque aquí</a>
+
+        <h1>Check-in Forms</h1>
+        <p class="gate-intro">Welcome, and thank you for choosing Fruitvale Optometry. This replaces the paper forms at the front desk — your patient information, our office policies, text messages and retinal photos — and takes about 7 minutes.</p>
+        <p class="pf-req-note">Questions marked <span class="pf-star">*</span> are required. Everything else is optional — skip anything you don't know.</p>
+
+        <form id="pf-form" novalidate autocomplete="on">
+
+          <!-- 1. About you -->
+          <section class="pf-sec" aria-labelledby="sec-you">
+            <h2 id="sec-you"><span class="pf-num">1</span> <span>About you <span class="field-hint">(the patient)</span></span></h2>
+
+            <div class="pf-row name">
+              <div class="field">
+                <label for="p-first">First name <span class="pf-star">*</span></label>
+                <input type="text" id="p-first" data-req data-validate="name" autocomplete="given-name" maxlength="40">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="p-last">Last name <span class="pf-star">*</span></label>
+                <input type="text" id="p-last" data-req data-validate="name" autocomplete="family-name" maxlength="40">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="p-mi">Middle initial</label>
+                <input type="text" id="p-mi" data-validate="mi" autocomplete="additional-name" maxlength="1">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+
+            <div class="pf-row c2">
+              <div class="field">
+                <label for="p-dob">Date of birth <span class="pf-star">*</span> <span class="field-hint">(MM/DD/YYYY)</span></label>
+                <input type="text" id="p-dob" data-req data-validate="dob" inputmode="numeric" autocomplete="bday" placeholder="MM/DD/YYYY" maxlength="10">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="p-pronouns">Preferred pronouns</label>
+                <input type="text" id="p-pronouns" autocomplete="off" maxlength="30" placeholder="e.g. she/her">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+
+            <span class="pf-sig-label" id="lbl-sex">Sex <span class="pf-star">*</span></span>
+            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-sex" data-req-group="p-sex">
+              <label class="pf-chip"><input type="radio" name="p-sex" value="F"> Female</label>
+              <label class="pf-chip"><input type="radio" name="p-sex" value="M"> Male</label>
+              <label class="pf-chip"><input type="radio" name="p-sex" value="X"> Other</label>
+            </div>
+            <p class="pf-chips-err">Please choose one.</p>
+
+            <div class="pf-row addr">
+              <div class="field">
+                <label for="p-address">Street address <span class="pf-star">*</span></label>
+                <input type="text" id="p-address" data-req autocomplete="address-line1" maxlength="80">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="p-apt">Apt #</label>
+                <input type="text" id="p-apt" autocomplete="address-line2" maxlength="12">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+            <div class="pf-row city">
+              <div class="field">
+                <label for="p-city">City <span class="pf-star">*</span></label>
+                <input type="text" id="p-city" data-req autocomplete="address-level2" maxlength="40">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="p-state">State <span class="pf-star">*</span></label>
+                <input type="text" id="p-state" data-req data-validate="state" autocomplete="address-level1" maxlength="2" value="CA">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="p-zip">ZIP <span class="pf-star">*</span></label>
+                <input type="text" id="p-zip" data-req data-validate="zip" inputmode="numeric" autocomplete="postal-code" maxlength="10">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+
+            <div class="pf-row c2">
+              <div class="field">
+                <label for="p-cell">Cell / home phone <span class="pf-star">*</span></label>
+                <input type="tel" id="p-cell" data-req data-validate="phone" inputmode="tel" autocomplete="tel" placeholder="(510) 555-1234" maxlength="14">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="p-work">Work phone</label>
+                <input type="tel" id="p-work" data-validate="phone" inputmode="tel" autocomplete="off" maxlength="14">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+            <div class="pf-row c2">
+              <div class="field">
+                <label for="p-email">Email</label>
+                <input type="email" id="p-email" data-validate="email" inputmode="email" autocomplete="email" maxlength="80">
+                <span class="error-msg"></span>
+              </div>
+              <div class="field">
+                <label for="p-occupation">Occupation</label>
+                <input type="text" id="p-occupation" autocomplete="organization-title" maxlength="40">
+                <span class="error-msg"></span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="p-ssn">Social Security # <span class="field-hint">(optional)</span></label>
+              <input type="text" id="p-ssn" data-validate="ssn" inputmode="numeric" autocomplete="off" maxlength="11" placeholder="XXX-XX-XXXX" style="max-width:11rem">
+              <span class="error-msg"></span>
+            </div>
+          </section>
+
+          <!-- 2. Health: the paper sheet's medical part cut down (user 10/27/2026: "want to make it as simple
+               as possible"). All optional; codes in the payload, tools\patient_forms.py turns them into words. -->
+          <section class="pf-sec" aria-labelledby="sec-health">
+            <h2 id="sec-health"><span class="pf-num">2</span> <span>Your health <span class="field-hint">(about a minute — tap what applies)</span></span></h2>
+
+            <h3 id="lbl-reason">What brings you in?</h3>
+            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-reason">
+              <label class="pf-chip"><input type="radio" name="h-reason" value="exam"> Routine eye exam</label>
+              <label class="pf-chip"><input type="radio" name="h-reason" value="glasses"> New glasses</label>
+              <label class="pf-chip"><input type="radio" name="h-reason" value="contacts"> Contact lenses</label>
+              <label class="pf-chip"><input type="radio" name="h-reason" value="problem"> An eye problem</label>
+            </div>
+            <div class="pf-when pf-sub" data-when="h-reason:problem">
+              <span class="pf-sig-label" id="lbl-eye">Which eye?</span>
+              <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-eye">
+                <label class="pf-chip"><input type="radio" name="h-eye" value="right"> Right</label>
+                <label class="pf-chip"><input type="radio" name="h-eye" value="left"> Left</label>
+                <label class="pf-chip"><input type="radio" name="h-eye" value="both"> Both</label>
+              </div>
+              <div class="pf-row c2">
+                <div class="field">
+                  <label for="h-howlong">How long has it been going on?</label>
+                  <input type="text" id="h-howlong" autocomplete="off" maxlength="30" placeholder="e.g. 2 weeks">
+                  <span class="error-msg"></span>
+                </div>
+              </div>
+              <div class="field">
+                <label for="h-problem">What's going on?</label>
+                <textarea id="h-problem" maxlength="300" placeholder="e.g. blurry when I drive at night"></textarea>
+                <span class="error-msg"></span>
+              </div>
+            </div>
+
+            <h3 id="lbl-lastexam">When was your last eye exam?</h3>
+            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-lastexam">
+              <label class="pf-chip"><input type="radio" name="h-lastexam" value="lt1"> Less than 1 year ago</label>
+              <label class="pf-chip"><input type="radio" name="h-lastexam" value="1-2"> 1–2 years ago</label>
+              <label class="pf-chip"><input type="radio" name="h-lastexam" value="3plus"> 3+ years ago</label>
+              <label class="pf-chip"><input type="radio" name="h-lastexam" value="never"> Never / not sure</label>
+            </div>
+
+            <h3 id="lbl-wear">Do you wear…</h3>
+            <div class="pf-chips" role="group" aria-labelledby="lbl-wear">
+              <label class="pf-chip"><input type="checkbox" name="h-wear" value="glasses"> Glasses</label>
+              <label class="pf-chip"><input type="checkbox" name="h-wear" value="contacts"> Contacts</label>
+              <label class="pf-chip none-chip"><input type="checkbox" name="h-wear" value="neither" data-exclusive> Neither</label>
+            </div>
+            <div class="pf-chips">
+              <label class="pf-chip"><input type="checkbox" name="h-clint" value="yes"> I'd like to try contacts</label>
+            </div>
+
+            <!-- the medical questions: hidden for a "New glasses" visit (user 10/27/2026) -->
+            <div class="pf-when" data-when="h-reason:!glasses">
+            <h3 id="lbl-meds" style="margin-top:1.2rem">Do you take any medicines? <span class="field-hint">(eye drops too)</span></h3>
+            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-meds">
+              <label class="pf-chip"><input type="radio" name="h-meds" value="none"> No</label>
+              <label class="pf-chip"><input type="radio" name="h-meds" value="yes"> Yes</label>
+            </div>
+            <div class="pf-when pf-sub" data-when="h-meds:yes">
+              <div class="field">
+                <label for="h-meds-list">Which ones?</label>
+                <textarea id="h-meds-list" maxlength="400" placeholder="e.g. metformin, lisinopril, artificial tears"></textarea>
+                <span class="error-msg"></span>
+              </div>
+            </div>
+
+            <h3 id="lbl-allergy">Are you allergic to any medicine?</h3>
+            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-allergy">
+              <label class="pf-chip"><input type="radio" name="h-allergy" value="none"> No</label>
+              <label class="pf-chip"><input type="radio" name="h-allergy" value="yes"> Yes</label>
+            </div>
+            <div class="pf-when pf-sub" data-when="h-allergy:yes">
+              <div class="field">
+                <label for="h-allergy-list">Which ones?</label>
+                <textarea id="h-allergy-list" maxlength="300" placeholder="e.g. penicillin"></textarea>
+                <span class="error-msg"></span>
+              </div>
+            </div>
+
+            <h3 id="lbl-cond">Do you have any of these? <span class="field-hint">(tap all that apply)</span></h3>
+            <div class="pf-chips" role="group" aria-labelledby="lbl-cond">
+              <label class="pf-chip"><input type="checkbox" name="h-cond" value="diabetes"> Diabetes</label>
+              <label class="pf-chip"><input type="checkbox" name="h-cond" value="hbp"> High blood pressure</label>
+              <label class="pf-chip"><input type="checkbox" name="h-cond" value="chol"> High cholesterol</label>
+              <label class="pf-chip"><input type="checkbox" name="h-cond" value="thyroid"> Thyroid problem</label>
+              <label class="pf-chip"><input type="checkbox" name="h-cond" value="arthritis"> Arthritis or lupus</label>
+              <label class="pf-chip"><input type="checkbox" name="h-cond" value="migraine"> Migraines</label>
+              <label class="pf-chip"><input type="checkbox" name="h-cond" value="pregnant"> Pregnant or nursing</label>
+              <label class="pf-chip none-chip"><input type="checkbox" name="h-cond" value="none" data-exclusive> None of these</label>
+            </div>
+            <div class="pf-when pf-sub" data-when="h-cond:diabetes">
+              <div class="pf-row c2">
+                <div class="field">
+                  <label for="h-dm-year">Year you found out</label>
+                  <input type="text" id="h-dm-year" data-validate="year" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="e.g. 2015">
+                  <span class="error-msg"></span>
+                </div>
+              </div>
+              <span class="pf-sig-label" id="lbl-insulin">Do you take insulin?</span>
+              <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-insulin">
+                <label class="pf-chip"><input type="radio" name="h-insulin" value="yes"> Yes</label>
+                <label class="pf-chip"><input type="radio" name="h-insulin" value="no"> No</label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="h-cond-other">Anything else about your health?</label>
+              <input type="text" id="h-cond-other" autocomplete="off" maxlength="150">
+              <span class="error-msg"></span>
+            </div>
+
+            <h3 id="lbl-eyehx">Have you ever had any of these?</h3>
+            <div class="pf-chips" role="group" aria-labelledby="lbl-eyehx">
+              <label class="pf-chip"><input type="checkbox" name="h-eyehx" value="glaucoma"> Glaucoma</label>
+              <label class="pf-chip"><input type="checkbox" name="h-eyehx" value="cataract"> Cataract</label>
+              <label class="pf-chip"><input type="checkbox" name="h-eyehx" value="amd"> Macular degeneration</label>
+              <label class="pf-chip"><input type="checkbox" name="h-eyehx" value="retina"> Retinal tear or detachment</label>
+              <label class="pf-chip"><input type="checkbox" name="h-eyehx" value="lazy"> Lazy eye or eye turn</label>
+              <label class="pf-chip"><input type="checkbox" name="h-eyehx" value="injury"> Eye injury</label>
+              <label class="pf-chip"><input type="checkbox" name="h-eyehx" value="surgery"> Eye surgery (LASIK, cataract…)</label>
+              <label class="pf-chip none-chip"><input type="checkbox" name="h-eyehx" value="none" data-exclusive> None</label>
+            </div>
+
+            <h3 id="lbl-sym">Is anything bothering your eyes now?</h3>
+            <div class="pf-chips" role="group" aria-labelledby="lbl-sym">
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="blurfar"> Blurry far away</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="blurnear"> Blurry up close / reading</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="computer"> Strain at the computer</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="dry"> Dry, itchy or watery</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="red"> Red or painful</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="floaters"> Floaters</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="flashes"> Flashes of light</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="double"> Double vision</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="headache"> Headaches</label>
+              <label class="pf-chip"><input type="checkbox" name="h-sym" value="night"> Hard to see at night</label>
+              <label class="pf-chip none-chip"><input type="checkbox" name="h-sym" value="none" data-exclusive> Nothing</label>
+            </div>
+
+            <h3 id="lbl-fam">Has anyone in your family had…</h3>
+            <div class="pf-chips" role="group" aria-labelledby="lbl-fam">
+              <label class="pf-chip"><input type="checkbox" name="h-fam" value="glaucoma"> Glaucoma</label>
+              <label class="pf-chip"><input type="checkbox" name="h-fam" value="amd"> Macular degeneration</label>
+              <label class="pf-chip"><input type="checkbox" name="h-fam" value="diabetes"> Diabetes</label>
+              <label class="pf-chip"><input type="checkbox" name="h-fam" value="blind"> Blindness</label>
+              <label class="pf-chip none-chip"><input type="checkbox" name="h-fam" value="none" data-exclusive> None / not sure</label>
+            </div>
+
+            <h3 id="lbl-smoke">Do you smoke?</h3>
+            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-smoke">
+              <label class="pf-chip"><input type="radio" name="h-smoke" value="never"> Never</label>
+              <label class="pf-chip"><input type="radio" name="h-smoke" value="quit"> I quit</label>
+              <label class="pf-chip"><input type="radio" name="h-smoke" value="yes"> Yes</label>
+            </div>
+
+            <div class="field">
+              <label for="h-pcp">Your regular doctor <span class="field-hint">(name or clinic)</span></label>
+              <input type="text" id="h-pcp" autocomplete="off" maxlength="60">
+              <span class="error-msg"></span>
+            </div>
+            </div><!-- /medical questions -->
+
+            <h3 id="lbl-screen">Time on screens a day <span class="field-hint">(phone, computer, TV)</span></h3>
+            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-screen">
+              <label class="pf-chip"><input type="radio" name="h-screen" value="lt2"> Under 2 hours</label>
+              <label class="pf-chip"><input type="radio" name="h-screen" value="2-6"> 2–6 hours</label>
+              <label class="pf-chip"><input type="radio" name="h-screen" value="6plus"> 6+ hours</label>
+            </div>
+          </section>
+
+          <!-- 3-5: the paper "Patient Policies" + "Retinal Photos" sheet (NAS sample patient forms\
+               all-forms packet p1-p4), word for word. Only on this page -- patient-form.html stays
+               as it was (user 11/02/2026: "make it a different url than the current one, dont change
+               the current"). js/patient-form.js sends the words + answers as payload.packet. -->
+          <section class="pf-sec" aria-labelledby="sec-pol">
+            <h2 id="sec-pol"><span class="pf-num">3</span> Office policies</h2>
+            <div class="pf-doc" id="x-pol-text">
+              <h3>Appointments — give us 24 hours' notice</h3>
+              <ul>
+                <li><strong>Need to cancel or change your visit?</strong> Call us at least <strong>24 hours</strong> before your appointment.</li>
+                <li>Less than 24 hours' notice — or not showing up — counts as a <strong>missed appointment</strong>.</li>
+                <li><strong>Miss 2 in a row?</strong> You can no longer book ahead. You may only be seen as a <strong>walk-in</strong>.</li>
+                <li><strong>Walk-in times:</strong> Monday–Friday <strong>9:00 AM or 2:00 PM</strong> • Sunday <strong>10:00 AM</strong>. Patients with appointments go first.</li>
+                <li>After <strong>1 walk-in visit</strong>, you can book appointments ahead of time again.</li>
+              </ul>
+              <h3>Treat our team and other patients with respect</h3>
+              <p>We do not allow yelling, cursing, insults or threats, unwanted touching, damage to our property, or sexual jokes and comments. Patients who do these things may be <strong>dismissed from the practice</strong>.</p>
+            </div>
+            <div class="pf-agree-group" data-req-group="x-pol">
+              <label class="pf-agree"><input type="checkbox" name="x-pol" value="yes"> <span>I agree to the rescheduling policy and the anti-harassment policy. <span class="pf-star">*</span></span></label>
+            </div>
+            <p class="pf-chips-err">Please check the box to agree.</p>
+          </section>
+
+          <section class="pf-sec" aria-labelledby="sec-txt">
+            <h2 id="sec-txt"><span class="pf-num">4</span> Email and text messages</h2>
+            <div class="pf-doc" id="x-txt-text">
+              <p><strong>Why we ask:</strong> We text and email to tell you <strong>when your glasses or contacts are ready</strong>, to send <strong>appointment reminders</strong>, and to answer your questions.</p>
+              <p><strong>Please know:</strong></p>
+              <ul>
+                <li>Text and email are <strong>not fully private</strong>. Someone else could see a message by mistake.</li>
+                <li>Messages about your care become part of your medical record.</li>
+                <li><strong>Never text or email us in an emergency</strong> — call us instead.</li>
+                <li>Please don't text or email us about very private topics (like mental health or HIV).</li>
+                <li>Message and data rates may apply. Reply <strong>STOP</strong> at any time to stop texts.</li>
+                <li>Tell us if your phone number or email changes.</li>
+              </ul>
+            </div>
+            <div class="pf-agree-group" role="radiogroup" aria-labelledby="sec-txt" data-req-group="x-txt">
+              <label class="pf-agree pf-choice"><input type="radio" name="x-txt" value="yes"> <span><strong>YES</strong> — I understand the risks above, and Fruitvale Optometry may text and email me.</span></label>
+              <label class="pf-agree pf-choice"><input type="radio" name="x-txt" value="no"> <span><strong>NO</strong> — please don't text or email me.</span></label>
+            </div>
+            <p class="pf-chips-err">Please choose one.</p>
+            <div class="pf-when pf-sub" data-when="x-txt:yes">
+              <div class="pf-row c2">
+                <div class="field">
+                  <label for="x-txt-cell">Cell phone for texts <span class="pf-star">*</span></label>
+                  <input type="tel" id="x-txt-cell" data-req data-validate="phone" data-prefill="p-cell" inputmode="tel" autocomplete="tel" placeholder="(510) 555-1234" maxlength="14">
+                  <span class="error-msg"></span>
+                </div>
+                <div class="field">
+                  <label for="x-txt-email">Email</label>
+                  <input type="email" id="x-txt-email" data-validate="email" data-prefill="p-email" inputmode="email" autocomplete="email" maxlength="80">
+                  <span class="error-msg"></span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="pf-sec" aria-labelledby="sec-ret">
+            <h2 id="sec-ret"><span class="pf-num">5</span> <span>Retinal photos <span class="field-hint">(optional — please choose YES or NO)</span></span></h2>
+            <div class="pf-doc" id="x-ret-text">
+              <h3>What is a retinal photo?</h3>
+              <ul>
+                <li>A <strong>quick, painless picture</strong> of the back of your eye (the retina).</li>
+                <li><strong>Nothing touches your eye.</strong> It takes only a few seconds — like having your picture taken.</li>
+                <li>It <strong>usually does not require dilating drops</strong> — no blurry vision after your visit.</li>
+              </ul>
+              <h3>Why do we recommend it?</h3>
+              <ul>
+                <li>It helps your doctor find early signs of serious problems like <strong>diabetes, glaucoma, and macular degeneration</strong> — often before you notice any change in your vision.</li>
+                <li>Some eye problems <strong>cannot be seen without the photo</strong>.</li>
+                <li>Finding problems early can help <strong>prevent vision loss</strong>.</li>
+                <li>We recommend a photo <strong>once a year</strong>.</li>
+              </ul>
+            </div>
+            <div class="pf-agree-group" role="radiogroup" aria-labelledby="sec-ret" data-req-group="x-ret">
+              <label class="pf-agree pf-choice"><input type="radio" name="x-ret" value="yes"> <span><strong>YES</strong> — I want the retinal photos. I agree to pay <strong>$39 (not covered by insurance)</strong>.</span></label>
+              <label class="pf-agree pf-choice"><input type="radio" name="x-ret" value="no"> <span><strong>NO</strong> — I do not want the photos. I understand that without them, my doctor <strong>may not find some serious eye diseases</strong> developing in the back of my eye.</span></label>
+            </div>
+            <p class="pf-chips-err">Please choose YES or NO.</p>
+          </section>
+
+          <!-- 6. Acknowledgement + signature (no emergency contact since 10/27/2026 -- user: "get rid of the emergency contact") -->
+          <section class="pf-sec" aria-labelledby="sec-sign">
+            <h2 id="sec-sign"><span class="pf-num">6</span> Acknowledgement and signature</h2>
+
+            <div class="pf-ack" id="pf-ack-text">
+              <p>I have reviewed the HIPAA Notice of Privacy Practices, have been provided an opportunity to discuss my right to privacy, and know that upon request I will be given a copy of the notice. I certify that the information above is correct to the best of my knowledge. I authorize my insurance to pay Fruitvale Optometry directly for services received here. I understand that the description of insurance benefits doesn't guarantee payment and I accept responsibility for all charges that my insurance doesn't cover plus any charges necessary to collect debts owed.</p>
+              <p>My signature below also signs sections 3, 4 and 5: the office policies, my email and text choice, and my retinal photo choice.</p>
+            </div>
+            <p style="margin:0 0 1rem"><a href="privacy-notice.html" target="_blank" rel="noopener">Read our Notice of Privacy Practices</a> <span class="field-hint">(opens in a new tab — your answers here stay put)</span></p>
+
+            <span class="pf-sig-label" id="lbl-signer">Who is signing? <span class="pf-star">*</span></span>
+            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-signer" data-req-group="signer">
+              <label class="pf-chip"><input type="radio" name="signer" value="patient"> I am the patient</label>
+              <label class="pf-chip"><input type="radio" name="signer" value="guardian"> Parent / guardian (patient is a minor)</label>
+            </div>
+            <p class="pf-chips-err">Please choose one.</p>
+            <div class="pf-when pf-sub" data-when="signer:guardian">
+              <div class="pf-row c2">
+                <div class="field">
+                  <label for="g-name">Your full name <span class="pf-star">*</span></label>
+                  <input type="text" id="g-name" data-req data-validate="name" autocomplete="name" maxlength="60">
+                  <span class="error-msg"></span>
+                </div>
+                <div class="field">
+                  <label for="g-rel">Relationship to the patient <span class="pf-star">*</span></label>
+                  <input type="text" id="g-rel" data-req autocomplete="off" maxlength="30" placeholder="e.g. mother">
+                  <span class="error-msg"></span>
+                </div>
+              </div>
+            </div>
+
+            <label class="pf-agree" id="pf-agree-label"><input type="checkbox" id="pf-agree"> I have read the acknowledgement above and I agree to it. <span class="pf-star">*</span></label>
+
+            <span class="pf-sig-label" id="lbl-sig">Sign here with your finger <span class="pf-star">*</span></span>
+            <div class="pf-sig-wrap" id="pf-sig-wrap">
+              <span class="pf-sig-x" aria-hidden="true">✕</span>
+              <span class="pf-sig-line" aria-hidden="true"></span>
+              <span class="pf-sig-ph" aria-hidden="true">Sign here</span>
+              <canvas id="pf-sig" role="img" aria-labelledby="lbl-sig"></canvas>
+            </div>
+            <p class="pf-sig-err">Please sign in the box.</p>
+            <div class="pf-sig-bar">
+              <span>Date: <strong id="pf-today"></strong></span>
+              <button type="button" class="pf-sig-clear" id="pf-sig-clear">Clear signature</button>
+            </div>
+          </section>
+
+          <div class="gate-actions">
+            <div class="pf-summary" id="pf-summary" role="alert"></div>
+            <button type="submit" class="btn btn-primary gate-submit" id="pf-submit">Submit my forms</button>
+            <p class="pf-privacy-note">Your answers go straight to Fruitvale Optometry's secure, HIPAA-covered records. Nothing is saved on this phone.</p>
+            <p class="gate-call-fallback">Questions? <a href="tel:+15105336567"><strong>Call (510) 533-6567</strong></a> or ask at the front desk.</p>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- confirmation popup -->
+<div class="gate-modal-backdrop" id="pf-modal" role="dialog" aria-modal="true" aria-labelledby="pf-modal-title">
+  <div class="gate-modal">
+    <div class="modal-icon" aria-hidden="true">✓</div>
+    <h2 id="pf-modal-title">Thank you — your forms were sent!</h2>
+    <p>Let the front desk know you're done.</p>
+    <button type="button" class="btn btn-primary" id="pf-done">Done</button>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© Fruitvale Optometry · 3301 East 12th Street #109, Oakland, CA 94601 · (510) 533-6567</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/patient-form.js?v=8"></script>
+
+</body>
+</html>

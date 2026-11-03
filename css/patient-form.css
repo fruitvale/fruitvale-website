@@ -172,6 +172,30 @@
 .pf-agree.checked { border-color: var(--teal-700); background: var(--teal-100); }
 .pf-agree.errored { border-color: #c0392b; background: #fdf3f2; }
 
+/* check-in.html only: the policies / texts / retinal photos text and the
+   tick-one boxes under it (the regular form has none of these) */
+.pf-doc {
+  margin: 0 0 1rem;
+  padding: .9rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  font-size: 1.02rem;
+  line-height: 1.5;
+}
+.pf-sec .pf-doc h3 { margin: .9rem 0 .4rem; }
+.pf-sec .pf-doc h3:first-child { margin-top: 0; }
+.pf-doc p { margin: 0 0 .5rem; }
+.pf-doc ul { margin: 0 0 .6rem; padding-left: 1.25rem; }
+.pf-doc li { margin: 0 0 .35rem; }
+.pf-doc > :last-child { margin-bottom: 0; }
+.pf-agree-group { margin: 0 0 1rem; }
+.pf-agree-group .pf-agree { margin: 0 0 .6rem; }
+.pf-agree-group .pf-agree:last-child { margin-bottom: 0; }
+.pf-agree.pf-choice { font-weight: 500; }
+.pf-agree-group.errored .pf-agree { border-color: #c0392b; background: #fdf3f2; }
+.pf-agree-group.errored + .pf-chips-err { display: block; margin-top: -.4rem; }
+
 .pf-sig-label { display: block; font-weight: 700; margin: 0 0 .35rem; }
 .pf-sig-wrap {
   position: relative;
