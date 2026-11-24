@@ -154,11 +154,11 @@
             <h2 id="sec-health"><span class="pf-num">2</span> <span>Su salud <span class="field-hint">(como un minuto — toque lo que aplique)</span></span></h2>
 
             <h3 id="lbl-reason">¿Qué lo trae hoy?</h3>
-            <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-reason">
-              <label class="pf-chip"><input type="radio" name="h-reason" value="exam"> Examen de la vista de rutina</label>
-              <label class="pf-chip"><input type="radio" name="h-reason" value="glasses"> Lentes nuevos</label>
-              <label class="pf-chip"><input type="radio" name="h-reason" value="contacts"> Lentes de contacto</label>
-              <label class="pf-chip"><input type="radio" name="h-reason" value="problem"> Un problema de los ojos</label>
+            <div class="pf-chips" role="group" aria-labelledby="lbl-reason">
+              <label class="pf-chip"><input type="checkbox" name="h-reason" value="exam"> Examen de la vista de rutina</label>
+              <label class="pf-chip"><input type="checkbox" name="h-reason" value="glasses"> Lentes nuevos</label>
+              <label class="pf-chip"><input type="checkbox" name="h-reason" value="contacts"> Lentes de contacto</label>
+              <label class="pf-chip"><input type="checkbox" name="h-reason" value="problem"> Un problema de los ojos</label>
             </div>
             <div class="pf-when pf-sub" data-when="h-reason:problem">
               <span class="pf-sig-label" id="lbl-eye">¿Cuál ojo?</span>
@@ -199,7 +199,8 @@
               <label class="pf-chip"><input type="checkbox" name="h-clint" value="yes"> Me gustaría probar lentes de contacto</label>
             </div>
 
-            <!-- the medical questions: hidden for a "New glasses" visit (user 10/27/2026) -->
+            <!-- the medical questions: hidden when "New glasses" is the ONLY reason picked (user 10/27/2026;
+               several reasons can be picked since 11/24/2026) -->
             <div class="pf-when" data-when="h-reason:!glasses">
             <h3 id="lbl-meds" style="margin-top:1.2rem">¿Toma alguna medicina? <span class="field-hint">(también gotas para los ojos)</span></h3>
             <div class="pf-chips" role="radiogroup" aria-labelledby="lbl-meds">
@@ -476,7 +477,7 @@
   </div>
 </footer>
 
-<script src="../js/patient-form.js?v=8"></script>
+<script src="../js/patient-form.js?v=9"></script>
 
 </body>
 </html>

@@ -98,6 +98,13 @@
       .map(function (b) { return b.value; });
   }
   function radioVal(name) { var v = checkedVals(name); return v.length ? v[0] : ""; }
+  // the one "reason" older office tools read: "problem" first (they only show the
+  // eye-problem details for it), never "glasses" while anything else is picked
+  function oneReason() {
+    var v = checkedVals("h-reason"), others = v.filter(function (r) { return r !== "glasses"; });
+    if (v.indexOf("problem") !== -1) return "problem";
+    return others.length ? others[0] : (v.length ? v[0] : "");
+  }
   // only while its block is showing: a block hidden again keeps what was typed in it
   function shownVal(id) { var el = $(id); return el && isActive(el) ? val(id) : ""; }
   function shownRadio(name) {
@@ -155,8 +162,10 @@
   });
 
   // ---- show/hide blocks: data-when="name:value[,value...]" -----------------
-  // "name:!value" = shown UNLESS that value is picked (also while nothing is) --
-  // the health questions hide for a "New glasses" visit (user 10/27/2026)
+  // "name:!value" = shown UNLESS everything picked is that value (also shown
+  // while nothing is) -- the health questions hide for a "New glasses" visit
+  // (user 10/27/2026). Since 11/24/2026 "What brings you in?" takes several
+  // picks: New glasses + An eye problem still shows them.
   var whens = Array.prototype.slice.call(form.querySelectorAll("[data-when]"));
   function refreshWhen() {
     whens.forEach(function (el) {
@@ -164,8 +173,9 @@
       var picked = checkedVals(spec[0]);
       var not = (spec[1] || "").charAt(0) === "!";
       var want = (spec[1] || "").replace(/^!/, "").split(",");
-      var hit = want.some(function (w) { return picked.indexOf(w) !== -1; });
-      var on = not ? !hit : hit;
+      var on = not
+        ? !(picked.length && picked.every(function (p) { return want.indexOf(p) !== -1; }))
+        : want.some(function (w) { return picked.indexOf(w) !== -1; });
       if (el.classList.contains("show") !== on) {
         dbg("block", el.getAttribute("data-when"), on ? "shown" : "hidden");
         // data-prefill="p-cell": an empty box copies that answer when its block
@@ -491,7 +501,11 @@
       // "as simple as possible"). Codes, not words -- the office PDF turns them
       // into English whichever language the form was in.
       health: {
-        reason: radioVal("h-reason"),
+        // several can be picked since 11/24/2026 (user: "they should be able to select
+        // multiple of these options"): reasons = all of them; reason = ONE, for office
+        // tools that only know the one-answer form -- never "glasses" while something
+        // else is picked too (to those tools "glasses" means the medical part wasn't asked)
+        reasons: checkedVals("h-reason"), reason: oneReason(),
         eye: shownRadio("h-eye"), howLong: shownVal("h-howlong"), problem: shownVal("h-problem"),
         lastExam: radioVal("h-lastexam"),
         wear: checkedVals("h-wear"), wantsContacts: checkedVals("h-clint").length > 0,
